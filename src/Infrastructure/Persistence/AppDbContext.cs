@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
@@ -26,6 +27,8 @@ public class AppDbContext : DbContext
 
     public DbSet<Student> Students => Set<Student>();
 
+    public DbSet<StudentEnrollment> StudentEnrollments => Set<StudentEnrollment>();
+
     public DbSet<Assignment> Assignments => Set<Assignment>();
 
     public DbSet<AttendanceSession> AttendanceSessions => Set<AttendanceSession>();
@@ -35,6 +38,16 @@ public class AppDbContext : DbContext
     public DbSet<Exam> Exams => Set<Exam>();
 
     public DbSet<ExamScore> ExamScores => Set<ExamScore>();
+
+    public DbSet<QuestionCategory> QuestionCategories => Set<QuestionCategory>();
+
+    public DbSet<Question> Questions => Set<Question>();
+
+    public DbSet<ExamBlueprint> ExamBlueprints => Set<ExamBlueprint>();
+
+    public DbSet<ExamBlueprintDetail> ExamBlueprintDetails => Set<ExamBlueprintDetail>();
+
+    public DbSet<GeneratedExam> GeneratedExams => Set<GeneratedExam>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

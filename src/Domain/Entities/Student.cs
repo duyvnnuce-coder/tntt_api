@@ -34,4 +34,8 @@ public class Student : BaseEntity
 
     // Navigation
     public Parish Parish { get; set; } = null!;
+
+    public ICollection<StudentEnrollment> Enrollments { get; set; } = new List<StudentEnrollment>();
+
+    public ICollection<StudentCard> StudentCards { get; set; } = new List<StudentCard>();
 }

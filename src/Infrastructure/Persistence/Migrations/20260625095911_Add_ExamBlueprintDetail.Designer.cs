@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace tntt_api.src.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260625095911_Add_ExamBlueprintDetail")]
+    partial class Add_ExamBlueprintDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -562,53 +565,6 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.ToTable("exam_scores", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.GeneratedExam", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ExamBlueprintId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("GeneratedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .HasColumnType("bytea");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
-
-                    b.HasIndex("ExamBlueprintId");
-
-                    b.ToTable("generated_exams", (string)null);
-                });
-
             modelBuilder.Entity("Domain.Entities.Parish", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1150,17 +1106,6 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Navigation("Exam");
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("Domain.Entities.GeneratedExam", b =>
-                {
-                    b.HasOne("Domain.Entities.ExamBlueprint", "ExamBlueprint")
-                        .WithMany()
-                        .HasForeignKey("ExamBlueprintId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ExamBlueprint");
                 });
 
             modelBuilder.Entity("Domain.Entities.Question", b =>

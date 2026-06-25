@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware pipeline
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

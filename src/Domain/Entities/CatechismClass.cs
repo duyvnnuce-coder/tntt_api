@@ -28,4 +28,6 @@ public class CatechismClass : BaseEntity
     public CatechismGrade CatechismGrade { get; set; } = null!;
 
     public ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
+
+    public ICollection<StudentEnrollment> Enrollments { get; set; } = new List<StudentEnrollment>();
 }

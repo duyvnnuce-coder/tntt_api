@@ -36,6 +36,9 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("integer");
+
                     b.Property<DateOnly>("EndDate")
                         .HasColumnType("date");
 
@@ -47,13 +50,15 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("ParishId")
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateOnly>("StartDate")
@@ -63,6 +68,12 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsCurrent");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParishId");
 
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
@@ -94,7 +105,13 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsMainTeacher")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<Guid>("SemesterId")
@@ -113,12 +130,13 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("AssistantId");
 
-                    b.HasIndex("SemesterId");
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("TeacherId");
 
-                    b.HasIndex("ClassId", "SemesterId", "TeacherId")
-                        .IsUnique();
+                    b.HasIndex("SemesterId", "ClassId", "TeacherId");
 
                     b.ToTable("assignments", (string)null);
                 });
@@ -130,8 +148,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ChristianName")
                         .IsRequired()
@@ -150,13 +168,13 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("boolean");
@@ -178,12 +196,18 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(20)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FullName");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
@@ -217,6 +241,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(500)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<Guid>("StudentId")
@@ -226,6 +252,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("StudentId");
 
@@ -247,6 +275,9 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Property<DateOnly>("AttendanceDate")
                         .HasColumnType("date");
 
+                    b.Property<Guid?>("CatechismClassId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -260,16 +291,22 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<string>("Topic")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatechismClassId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("AssignmentId", "AttendanceDate", "LessonNumber")
                         .IsUnique();
@@ -318,6 +355,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -328,6 +367,10 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.HasIndex("AcademicYearId");
 
                     b.HasIndex("CatechismGradeId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParishId");
 
                     b.HasIndex("ParishId", "AcademicYearId", "Code")
                         .IsUnique();
@@ -360,19 +403,27 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("ParishId")
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DisplayOrder");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParishId");
 
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
@@ -416,12 +467,16 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("AssignmentId", "Code")
                         .IsUnique();
@@ -461,6 +516,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<int>("TotalQuestions")
@@ -470,6 +527,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("CatechismGradeId", "Code")
                         .IsUnique();
@@ -505,12 +564,16 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("QuestionCategoryId");
 
@@ -540,6 +603,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(500)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<decimal>("Score")
@@ -553,6 +618,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("StudentId");
 
@@ -594,6 +661,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -606,6 +675,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("ExamBlueprintId");
 
+                    b.HasIndex("IsDeleted");
+
                     b.ToTable("generated_exams", (string)null);
                 });
 
@@ -616,15 +687,23 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -647,6 +726,9 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.HasIndex("IsDeleted");
 
@@ -683,6 +765,10 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("CatechismGradeId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(2000)
@@ -709,6 +795,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -717,6 +805,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CatechismGradeId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("QuestionCategoryId", "CatechismGradeId");
 
@@ -756,12 +846,16 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
@@ -797,10 +891,12 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<int>("SemesterOrder")
@@ -813,6 +909,12 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AcademicYearId");
+
+                    b.HasIndex("IsCurrent");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("AcademicYearId", "Code")
                         .IsUnique();
@@ -827,8 +929,12 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("AvatarUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ChristianName")
                         .IsRequired()
@@ -847,17 +953,17 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FatherName")
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("boolean");
@@ -872,8 +978,12 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("MotherName")
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ParentPhone")
                         .HasMaxLength(20)
@@ -887,6 +997,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(20)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -894,10 +1006,120 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FullName");
+
+                    b.HasIndex("IsDeleted");
+
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
 
                     b.ToTable("students", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentCard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CardNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateOnly?>("ExpiredDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateOnly>("IssuedDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("PrintCount")
+                        .HasColumnType("integer");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bytea");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("Token")
+                        .IsUnique();
+
+                    b.ToTable("student_cards", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentEnrollment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CatechismClassId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateOnly>("JoinDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("LeaveDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bytea");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatechismClassId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("StudentId", "CatechismClassId", "JoinDate");
+
+                    b.ToTable("student_enrollments", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher", b =>
@@ -907,8 +1129,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ChristianName")
                         .IsRequired()
@@ -927,13 +1149,13 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("boolean");
@@ -955,12 +1177,18 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(20)");
 
                     b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("bytea");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FullName");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("ParishId", "Code")
                         .IsUnique();
@@ -1016,7 +1244,7 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Assistant", b =>
                 {
                     b.HasOne("Domain.Entities.Parish", "Parish")
-                        .WithMany()
+                        .WithMany("Assistants")
                         .HasForeignKey("ParishId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1027,9 +1255,9 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Attendance", b =>
                 {
                     b.HasOne("Domain.Entities.AttendanceSession", "AttendanceSession")
-                        .WithMany()
+                        .WithMany("Attendances")
                         .HasForeignKey("AttendanceSessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Student", "Student")
@@ -1051,25 +1279,29 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.CatechismClass", null)
+                        .WithMany("AttendanceSessions")
+                        .HasForeignKey("CatechismClassId");
+
                     b.Navigation("Assignment");
                 });
 
             modelBuilder.Entity("Domain.Entities.CatechismClass", b =>
                 {
                     b.HasOne("Domain.Entities.AcademicYear", "AcademicYear")
-                        .WithMany()
+                        .WithMany("CatechismClasses")
                         .HasForeignKey("AcademicYearId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.CatechismGrade", "CatechismGrade")
-                        .WithMany()
+                        .WithMany("CatechismClasses")
                         .HasForeignKey("CatechismGradeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Parish", "Parish")
-                        .WithMany()
+                        .WithMany("CatechismClasses")
                         .HasForeignKey("ParishId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1136,7 +1368,7 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.ExamScore", b =>
                 {
                     b.HasOne("Domain.Entities.Exam", "Exam")
-                        .WithMany()
+                        .WithMany("Scores")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1172,7 +1404,7 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.QuestionCategory", "QuestionCategory")
-                        .WithMany()
+                        .WithMany("Questions")
                         .HasForeignKey("QuestionCategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1207,7 +1439,7 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.HasOne("Domain.Entities.Parish", "Parish")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("ParishId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1215,10 +1447,40 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Navigation("Parish");
                 });
 
+            modelBuilder.Entity("Domain.Entities.StudentCard", b =>
+                {
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("StudentCards")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentEnrollment", b =>
+                {
+                    b.HasOne("Domain.Entities.CatechismClass", "CatechismClass")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("CatechismClassId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CatechismClass");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Domain.Entities.Teacher", b =>
                 {
                     b.HasOne("Domain.Entities.Parish", "Parish")
-                        .WithMany()
+                        .WithMany("Teachers")
                         .HasForeignKey("ParishId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1228,6 +1490,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.AcademicYear", b =>
                 {
+                    b.Navigation("CatechismClasses");
+
                     b.Navigation("Semesters");
                 });
 
@@ -1236,21 +1500,60 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Navigation("Assignments");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AttendanceSession", b =>
+                {
+                    b.Navigation("Attendances");
+                });
+
             modelBuilder.Entity("Domain.Entities.CatechismClass", b =>
                 {
                     b.Navigation("Assignments");
+
+                    b.Navigation("AttendanceSessions");
+
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CatechismGrade", b =>
+                {
+                    b.Navigation("CatechismClasses");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Exam", b =>
+                {
+                    b.Navigation("Scores");
                 });
 
             modelBuilder.Entity("Domain.Entities.Parish", b =>
                 {
                     b.Navigation("AcademicYears");
 
+                    b.Navigation("Assistants");
+
+                    b.Navigation("CatechismClasses");
+
                     b.Navigation("CatechismGrades");
+
+                    b.Navigation("Students");
+
+                    b.Navigation("Teachers");
+                });
+
+            modelBuilder.Entity("Domain.Entities.QuestionCategory", b =>
+                {
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("Domain.Entities.Semester", b =>
                 {
                     b.Navigation("Assignments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.Navigation("Enrollments");
+
+                    b.Navigation("StudentCards");
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher", b =>

@@ -30,4 +30,6 @@ public class CatechismClass : BaseEntity
     public ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
 
     public ICollection<StudentEnrollment> Enrollments { get; set; } = new List<StudentEnrollment>();
+
+    public ICollection<AttendanceSession> AttendanceSessions { get; set; } = new List<AttendanceSession>();
 }

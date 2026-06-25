@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,7 +11,7 @@ public class ExamBlueprintDetailConfiguration : IEntityTypeConfiguration<ExamBlu
     {
         builder.ToTable("exam_blueprint_details");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.EasyQuestions)
             .IsRequired();

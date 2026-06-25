@@ -22,6 +22,8 @@ public class Student : BaseEntity
 
     public string? Address { get; set; }
 
+    public string? AvatarUrl { get; set; }
+
     public string? FatherName { get; set; }
 
     public string? MotherName { get; set; }
@@ -31,6 +33,8 @@ public class Student : BaseEntity
     public DateOnly? JoinDate { get; set; }
 
     public bool IsActive { get; set; } = true;
+
+    public string? Note { get; set; }
 
     // Navigation
     public Parish Parish { get; set; } = null!;

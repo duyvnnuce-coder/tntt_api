@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,7 +11,14 @@ public class ParishConfiguration : IEntityTypeConfiguration<Parish>
     {
         builder.ToTable("parishes");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
+
+        builder.Property(x => x.Code)
+            .HasMaxLength(20)
+            .IsRequired();
+
+        builder.HasIndex(x => x.Code)
+            .IsUnique();
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -20,13 +28,13 @@ public class ParishConfiguration : IEntityTypeConfiguration<Parish>
             .IsUnique();
 
         builder.Property(x => x.Address)
-            .HasMaxLength(300);
+            .HasMaxLength(500);
 
         builder.Property(x => x.Phone)
             .HasMaxLength(20);
 
         builder.Property(x => x.Description)
-            .HasMaxLength(500);
+            .HasMaxLength(1000);
 
         builder.HasIndex(x => x.IsDeleted);
 

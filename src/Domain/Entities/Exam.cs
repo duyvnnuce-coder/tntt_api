@@ -18,4 +18,6 @@ public class Exam : BaseEntity
 
     // Navigation
     public Assignment Assignment { get; set; } = null!;
+
+    public ICollection<ExamScore> Scores { get; set; } = new List<ExamScore>();
 }

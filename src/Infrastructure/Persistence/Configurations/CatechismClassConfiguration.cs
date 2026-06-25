@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,7 +11,7 @@ public class CatechismClassConfiguration : IEntityTypeConfiguration<CatechismCla
     {
         builder.ToTable("catechism_classes");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.Code)
             .HasMaxLength(20)
@@ -30,17 +31,17 @@ public class CatechismClassConfiguration : IEntityTypeConfiguration<CatechismCla
             .IsRequired();
 
         builder.HasOne(x => x.Parish)
-            .WithMany()
+            .WithMany(x => x.CatechismClasses)
             .HasForeignKey(x => x.ParishId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.AcademicYear)
-            .WithMany()
+            .WithMany(x => x.CatechismClasses)
             .HasForeignKey(x => x.AcademicYearId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.CatechismGrade)
-            .WithMany()
+            .WithMany(x => x.CatechismClasses)
             .HasForeignKey(x => x.CatechismGradeId)
             .OnDelete(DeleteBehavior.Restrict);
 
@@ -50,5 +51,11 @@ public class CatechismClassConfiguration : IEntityTypeConfiguration<CatechismCla
             x.AcademicYearId,
             x.Code
         }).IsUnique();
+
+        builder.HasIndex(x => x.ParishId);
+
+        builder.HasIndex(x => x.AcademicYearId);
+
+        builder.HasIndex(x => x.CatechismGradeId);
     }
 }

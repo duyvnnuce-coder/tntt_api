@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Infrastructure.Persistence.Configurations.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,7 +11,7 @@ public class AttendanceSessionConfiguration : IEntityTypeConfiguration<Attendanc
     {
         builder.ToTable("attendance_sessions");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.AttendanceDate)
             .IsRequired();
@@ -19,15 +20,10 @@ public class AttendanceSessionConfiguration : IEntityTypeConfiguration<Attendanc
             .IsRequired();
 
         builder.Property(x => x.Topic)
-            .HasMaxLength(200);
+            .HasMaxLength(300);
 
         builder.Property(x => x.IsLocked)
             .IsRequired();
-
-        builder.HasOne(x => x.Assignment)
-            .WithMany()
-            .HasForeignKey(x => x.AssignmentId)
-            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasIndex(x => new
         {
@@ -35,5 +31,10 @@ public class AttendanceSessionConfiguration : IEntityTypeConfiguration<Attendanc
             x.AttendanceDate,
             x.LessonNumber
         }).IsUnique();
+
+        builder.HasOne(x => x.Assignment)
+            .WithMany()
+            .HasForeignKey(x => x.AssignmentId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

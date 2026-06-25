@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Infrastructure.Persistence.Configurations.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,15 +11,20 @@ public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
     {
         builder.ToTable("assignments");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
+
+        builder.Property(x => x.IsMainTeacher)
+            .IsRequired();
 
         builder.Property(x => x.StartDate)
             .IsRequired();
 
-        builder.Property(x => x.EndDate);
-
-        builder.Property(x => x.IsMainTeacher)
-            .IsRequired();
+        builder.HasIndex(x => new
+        {
+            x.SemesterId,
+            x.ClassId,
+            x.TeacherId
+        });
 
         builder.HasOne(x => x.Teacher)
             .WithMany(x => x.Assignments)
@@ -40,11 +46,7 @@ public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
             .HasForeignKey(x => x.SemesterId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasIndex(x => new
-        {
-            x.ClassId,
-            x.SemesterId,
-            x.TeacherId
-        }).IsUnique();
+        builder.Property(x => x.Note)
+            .HasMaxLength(500);
     }
 }

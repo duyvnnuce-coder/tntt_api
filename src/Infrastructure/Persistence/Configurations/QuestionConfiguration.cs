@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,7 +11,7 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
     {
         builder.ToTable("questions");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.Content)
             .HasMaxLength(2000)
@@ -41,7 +42,7 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
             .IsRequired();
 
         builder.HasOne(x => x.QuestionCategory)
-            .WithMany()
+           .WithMany(x => x.Questions)
             .HasForeignKey(x => x.QuestionCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
 

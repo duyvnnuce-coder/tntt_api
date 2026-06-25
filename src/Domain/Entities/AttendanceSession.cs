@@ -16,4 +16,6 @@ public class AttendanceSession : BaseEntity
 
     // Navigation
     public Assignment Assignment { get; set; } = null!;
+
+    public ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 }

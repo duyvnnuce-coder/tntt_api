@@ -18,6 +18,8 @@ public class Assignment : BaseEntity
 
     public DateOnly? EndDate { get; set; }
 
+    public string? Note { get; set; }
+
     // Navigation
     public Teacher Teacher { get; set; } = null!;
 

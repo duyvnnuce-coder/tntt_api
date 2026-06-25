@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,14 +11,14 @@ public class SemesterConfiguration : IEntityTypeConfiguration<Semester>
     {
         builder.ToTable("semesters");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.Code)
             .HasMaxLength(20)
             .IsRequired();
 
         builder.Property(x => x.Name)
-            .HasMaxLength(100)
+            .HasMaxLength(200)
             .IsRequired();
 
         builder.Property(x => x.SemesterOrder)
@@ -34,6 +35,10 @@ public class SemesterConfiguration : IEntityTypeConfiguration<Semester>
 
         builder.HasIndex(x => new { x.AcademicYearId, x.Code })
             .IsUnique();
+
+        builder.HasIndex(x => x.AcademicYearId);
+
+        builder.HasIndex(x => x.IsCurrent);
 
         builder.HasOne(x => x.AcademicYear)
             .WithMany(x => x.Semesters)

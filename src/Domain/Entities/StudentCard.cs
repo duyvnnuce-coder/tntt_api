@@ -9,6 +9,8 @@ public class StudentCard : BaseEntity
 
     public string Token { get; set; } = string.Empty;
 
+    public string? CardNumber { get; set; }
+
     public DateOnly IssuedDate { get; set; }
 
     public DateOnly? ExpiredDate { get; set; }

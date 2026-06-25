@@ -16,4 +16,6 @@ public class CatechismGrade : BaseEntity
 
     // Navigation
     public Parish Parish { get; set; } = null!;
+
+    public ICollection<CatechismClass> CatechismClasses { get; set; } = new List<CatechismClass>();
 }

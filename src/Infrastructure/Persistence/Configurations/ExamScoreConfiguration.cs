@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Infrastructure.Persistence.Configurations.Extensions;
 
 namespace Infrastructure.Persistence.Configurations;
 
@@ -10,7 +11,7 @@ public class ExamScoreConfiguration : IEntityTypeConfiguration<ExamScore>
     {
         builder.ToTable("exam_scores");
 
-        builder.HasKey(x => x.Id);
+        builder.ConfigureBaseEntity();
 
         builder.Property(x => x.Score)
             .HasPrecision(5, 2)
@@ -20,7 +21,7 @@ public class ExamScoreConfiguration : IEntityTypeConfiguration<ExamScore>
             .HasMaxLength(500);
 
         builder.HasOne(x => x.Exam)
-            .WithMany()
+              .WithMany(x => x.Scores)
             .HasForeignKey(x => x.ExamId)
             .OnDelete(DeleteBehavior.Cascade);
 

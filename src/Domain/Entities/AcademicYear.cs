@@ -16,8 +16,12 @@ public class AcademicYear : BaseEntity
 
     public bool IsCurrent { get; set; }
 
+    public int DisplayOrder { get; set; }
+
     // Navigation
     public Parish Parish { get; set; } = null!;
 
     public ICollection<Semester> Semesters { get; set; } = new List<Semester>();
+
+    public ICollection<CatechismClass> CatechismClasses { get; set; } = new List<CatechismClass>();
 }

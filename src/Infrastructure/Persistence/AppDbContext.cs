@@ -29,6 +29,8 @@ public class AppDbContext : DbContext
 
     public DbSet<StudentEnrollment> StudentEnrollments => Set<StudentEnrollment>();
 
+    public DbSet<StudentCard> StudentCards => Set<StudentCard>();
+
     public DbSet<Assignment> Assignments => Set<Assignment>();
 
     public DbSet<AttendanceSession> AttendanceSessions => Set<AttendanceSession>();

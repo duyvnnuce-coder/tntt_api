@@ -16,4 +16,6 @@ public class QuestionCategory : BaseEntity
 
     // Navigation
     public Parish Parish { get; set; } = null!;
+
+    public ICollection<Question> Questions { get; set; } = new List<Question>();
 }

@@ -109,3 +109,4 @@ C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\refint\tntt_api.d
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.pdb
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.genruntimeconfig.cache
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\ref\tntt_api.dll
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.sourcelink.json

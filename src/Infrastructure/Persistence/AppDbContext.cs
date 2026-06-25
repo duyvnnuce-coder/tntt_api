@@ -30,6 +30,12 @@ public class AppDbContext : DbContext
 
     public DbSet<AttendanceSession> AttendanceSessions => Set<AttendanceSession>();
 
+    public DbSet<Attendance> Attendances => Set<Attendance>();
+
+    public DbSet<Exam> Exams => Set<Exam>();
+
+    public DbSet<ExamScore> ExamScores => Set<ExamScore>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

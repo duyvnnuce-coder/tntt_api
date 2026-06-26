@@ -1,63 +1,89 @@
 using Application.Common.Enums;
 using Application.Common.Interfaces;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services;
 
 public class CodeGenerator : ICodeGenerator
 {
-    private readonly AppDbContext _context;
+    private readonly IApplicationDbContext _context;
 
-    public CodeGenerator(AppDbContext context)
+    public CodeGenerator(IApplicationDbContext context)
     {
         _context = context;
     }
 
-    public async Task<string> GenerateAsync(CodeType codeType)
+    public async Task<string> GenerateAsync(
+        CodeType codeType,
+        Guid parishId,
+        CancellationToken cancellationToken = default)
     {
-        return codeType switch
+        var prefix = GetPrefix(codeType);
+
+        var year = DateTime.Now.Year.ToString()[2..];
+
+        var start = $"{prefix}{year}";
+
+        int maxNumber = codeType switch
         {
-            CodeType.Student => await GenerateCodeAsync(
-                _context.Students.Select(x => x.Code),
-                "HS"),
+            CodeType.Student =>
+                await _context.Students
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
 
-            CodeType.Teacher => await GenerateCodeAsync(
-                _context.Teachers.Select(x => x.Code),
-                "GV"),
+            CodeType.Teacher =>
+                await _context.Teachers
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
 
-            CodeType.Assistant => await GenerateCodeAsync(
-                _context.Assistants.Select(x => x.Code),
-                "PT"),
+            CodeType.Assistant =>
+                await _context.Assistants
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
 
-            CodeType.Exam => await GenerateCodeAsync(
-                _context.Exams.Select(x => x.Code),
-                "DT"),
-
-            CodeType.Question => await GenerateCodeAsync(
-                _context.Questions.Select(x => x.Code),
-                "CH"),
-
-            _ => throw new ArgumentOutOfRangeException(nameof(codeType))
+            _ => 0
         };
+
+        return $"{start}{(maxNumber + 1):D4}";
     }
 
-    private static async Task<string> GenerateCodeAsync(
-        IQueryable<string> query,
-        string prefix)
+    private static int ParseMax(Task<List<string>> task)
     {
-        var lastCode = await query
-            .Where(x => x.StartsWith(prefix))
-            .OrderByDescending(x => x)
-            .FirstOrDefaultAsync();
+        return task.Result
+            .Select(x =>
+            {
+                var number = x[^4..];
+                return int.TryParse(number, out var n) ? n : 0;
+            })
+            .DefaultIfEmpty(0)
+            .Max();
+    }
 
-        var nextNumber = 1;
-
-        if (!string.IsNullOrWhiteSpace(lastCode))
+    private static string GetPrefix(CodeType type)
+    {
+        return type switch
         {
-            nextNumber = int.Parse(lastCode[prefix.Length..]) + 1;
-        }
-
-        return $"{prefix}{nextNumber:00000000}";
+            CodeType.Student => "HS",
+            CodeType.Teacher => "GV",
+            CodeType.Assistant => "TR",
+            CodeType.CatechismClass => "LH",
+            CodeType.AcademicYear => "NH",
+            CodeType.Semester => "HK",
+            CodeType.QuestionCategory => "CD",
+            CodeType.Question => "CH",
+            CodeType.Exam => "KT",
+            CodeType.ExamBlueprint => "MD",
+            CodeType.GeneratedExam => "DE",
+            _ => throw new ArgumentOutOfRangeException(nameof(type))
+        };
     }
 }

@@ -25,4 +25,10 @@ public class CatechismClassRepository : ICatechismClassRepository
         return await _context.CatechismClasses
             .AnyAsync(x => x.Id == id);
     }
+
+    public async Task AddAsync(CatechismClass catechismClass)
+    {
+        await _context.CatechismClasses.AddAsync(catechismClass);
+        await _context.SaveChangesAsync();
+    }
 }

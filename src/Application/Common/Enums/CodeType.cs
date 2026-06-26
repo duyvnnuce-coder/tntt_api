@@ -5,6 +5,12 @@ public enum CodeType
     Student,
     Teacher,
     Assistant,
+    CatechismClass,
+    AcademicYear,
+    Semester,
+    QuestionCategory,
+    Question,
     Exam,
-    Question
+    ExamBlueprint,
+    GeneratedExam
 }

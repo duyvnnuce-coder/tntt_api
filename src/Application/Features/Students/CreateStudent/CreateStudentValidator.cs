@@ -1,21 +1,41 @@
-using Application.Common.Exceptions;
-
 namespace Application.Features.Students.CreateStudent;
 
-public sealed class CreateStudentValidator
+public class CreateStudentValidator
 {
-    public void Validate(CreateStudentRequest request)
+    public static List<string> Validate(CreateStudentRequest request)
     {
+        var errors = new List<string>();
+
         if (request.ParishId == Guid.Empty)
-            throw new AppException("Parish is required.");
+            errors.Add("ParishId is required.");
 
         if (request.CatechismClassId == Guid.Empty)
-            throw new AppException("Catechism class is required.");
+            errors.Add("CatechismClassId is required.");
+
+        if (string.IsNullOrWhiteSpace(request.ChristianName))
+            errors.Add("Christian name is required.");
 
         if (string.IsNullOrWhiteSpace(request.FullName))
-            throw new AppException("Full name is required.");
+            errors.Add("Full name is required.");
 
-        if (request.FullName.Length > 200)
-            throw new AppException("Full name is too long.");
+        if (request.DateOfBirth == default)
+            errors.Add("Date of birth is required.");
+
+        if (request.JoinDate == default)
+            errors.Add("Join date is required.");
+
+        if (!string.IsNullOrWhiteSpace(request.Email))
+        {
+            try
+            {
+                _ = new System.Net.Mail.MailAddress(request.Email);
+            }
+            catch
+            {
+                errors.Add("Email is invalid.");
+            }
+        }
+
+        return errors;
     }
 }

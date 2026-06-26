@@ -45,8 +45,10 @@ public class CreateStudentHandler
             };
         }
 
-        var code = await _codeGenerator.GenerateAsync(CodeType.Student);
-
+        var code = await _codeGenerator.GenerateAsync(
+            CodeType.Student,
+            request.ParishId,
+            CancellationToken.None);
         var student = new Student
         {
             ParishId = request.ParishId,
@@ -68,7 +70,7 @@ public class CreateStudentHandler
         {
             Student = student,
             CatechismClassId = request.CatechismClassId,
-            JoinDate = request.JoinDate ?? DateOnly.FromDateTime(DateTime.Today),
+            JoinDate = request.JoinDate,
             IsCurrent = true
         };
 

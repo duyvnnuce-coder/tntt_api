@@ -863,6 +863,61 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.ToTable("question_categories", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Sacrament", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CertificateNumber")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("ChurchName")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Minister")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateOnly?>("ReceivedDate")
+                        .HasColumnType("date");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bytea");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("StudentId", "Type")
+                        .IsUnique();
+
+                    b.ToTable("sacraments", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Semester", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1425,6 +1480,17 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
                     b.Navigation("Parish");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Sacrament", b =>
+                {
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("Sacraments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Domain.Entities.Semester", b =>
                 {
                     b.HasOne("Domain.Entities.AcademicYear", "AcademicYear")
@@ -1552,6 +1618,8 @@ namespace tntt_api.src.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.Navigation("Enrollments");
+
+                    b.Navigation("Sacraments");
 
                     b.Navigation("StudentCards");
                 });

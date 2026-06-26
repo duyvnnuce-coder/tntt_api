@@ -80,5 +80,10 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
 
         builder.Property(x => x.Note)
             .HasMaxLength(500);
+
+        builder.HasMany(x => x.Sacraments)
+            .WithOne(x => x.Student)
+            .HasForeignKey(x => x.StudentId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

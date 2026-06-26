@@ -7,4 +7,6 @@ public interface ICatechismClassRepository
     Task<CatechismClass?> GetByIdAsync(Guid id);
 
     Task<bool> ExistsAsync(Guid id);
+
+    Task AddAsync(CatechismClass catechismClass);
 }

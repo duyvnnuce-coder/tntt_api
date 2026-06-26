@@ -1,13 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Application.Features.Students.CreateStudent;
 
 public class CreateStudentRequest
 {
+    [Required]
     public Guid ParishId { get; set; }
 
+    [Required]
     public Guid CatechismClassId { get; set; }
 
+    [Required]
     public string ChristianName { get; set; } = string.Empty;
 
+    [Required]
     public string FullName { get; set; } = string.Empty;
 
     public bool Gender { get; set; }
@@ -26,5 +32,5 @@ public class CreateStudentRequest
 
     public string? ParentPhone { get; set; }
 
-    public DateOnly? JoinDate { get; set; }
+    public DateOnly JoinDate { get; set; }
 }

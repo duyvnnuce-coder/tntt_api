@@ -1,3 +1,11 @@
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.AssemblyReference.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfoInputs.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfo.cs
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.CoreCompileInputs.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.sourcelink.json
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\appsettings.json
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\tntt_api.exe
@@ -88,13 +96,6 @@ C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\ru\Microsoft.Code
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\duynu\AndroidStudioProjects\tntt_api\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.AssemblyReference.cache
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfoInputs.cache
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfo.cs
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.CoreCompileInputs.cache
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\staticwebassets\msbuild.tntt_api.Microsoft.AspNetCore.StaticWebAssets.props
@@ -109,4 +110,3 @@ C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\refint\tntt_api.d
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.pdb
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.genruntimeconfig.cache
 C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\ref\tntt_api.dll
-C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.sourcelink.json

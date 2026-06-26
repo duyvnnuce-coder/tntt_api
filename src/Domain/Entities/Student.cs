@@ -1,5 +1,6 @@
 using Domain.Common;
 
+
 namespace Domain.Entities;
 
 public class Student : BaseEntity
@@ -42,4 +43,6 @@ public class Student : BaseEntity
     public ICollection<StudentEnrollment> Enrollments { get; set; } = new List<StudentEnrollment>();
 
     public ICollection<StudentCard> StudentCards { get; set; } = new List<StudentCard>();
+
+    public ICollection<Sacrament> Sacraments { get; set; } = new List<Sacrament>();
 }

@@ -40,4 +40,16 @@ public class SacramentRepository : ISacramentRepository
             x.StudentId == studentId &&
             x.Type == type);
     }
+
+    public async Task<List<Sacrament>> GetListAsync(Guid? studentId)
+    {
+        var query = _context.Sacraments.AsQueryable();
+
+        if (studentId.HasValue)
+            query = query.Where(x => x.StudentId == studentId.Value);
+
+        return await query
+            .OrderByDescending(x => x.CreatedAt)
+            .ToListAsync();
+    }
 }

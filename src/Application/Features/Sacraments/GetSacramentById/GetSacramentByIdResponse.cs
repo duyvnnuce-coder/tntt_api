@@ -1,4 +1,4 @@
-using Domain.Common;
+using Domain.Entities;
 
 namespace Application.Features.Sacraments.GetSacramentById;
 

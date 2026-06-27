@@ -20,7 +20,13 @@ using Application.Features.AttendanceSessions.CreateAttendanceSession;
 using Application.Features.CatechismGrades.CreateCatechismGrade;
 using Application.Features.Attendances.CreateAttendance;
 using Application.Features.Sacraments.GetSacramentById;
-
+using Application.Features.Sacraments.GetSacramentList;
+using Application.Features.StudentCards.CreateStudentCard;
+using Application.Features.StudentCards.GetStudentCardById;
+using Application.Features.StudentCards.GetStudentCardList;
+using Application.Features.StudentCards.GetStudentCardByStudentId;
+using Application.Features.StudentCards.UpdateStudentCardStatus;
+using Application.Features.StudentCards.ReissueStudentCard;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,6 +52,8 @@ builder.Services.AddScoped<ICatechismGradeRepository, CatechismGradeRepository>(
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddScoped<IAssistantRepository, AssistantRepository>();
 builder.Services.AddScoped<ISacramentRepository, SacramentRepository>();
+builder.Services.AddScoped<IStudentCardRepository, StudentCardRepository>();
+
 
 
 // Services
@@ -69,8 +77,14 @@ builder.Services.AddScoped<CreateAcademicYearHandler>();
 builder.Services.AddScoped<CreateAttendanceSessionHandler>();
 builder.Services.AddScoped<CreateAttendanceHandler>();
 builder.Services.AddScoped<GetSacramentByIdHandler>();
-
+builder.Services.AddScoped<CreateStudentCardHandler>();
+builder.Services.AddScoped<GetStudentCardListHandler>();
+builder.Services.AddScoped<GetStudentCardByStudentIdHandler>();
+builder.Services.AddScoped<UpdateStudentCardStatusHandler>();
+builder.Services.AddScoped<ReissueStudentCardHandler>();
+builder.Services.AddScoped<GetStudentCardByIdHandler>();
 builder.Services.AddScoped<CreateSemesterHandler>();
+
 
 // Controllers
 builder.Services.AddControllers();
@@ -79,6 +93,9 @@ builder.Services.AddControllers();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//get
+builder.Services.AddScoped<GetSacramentListHandler>();
 
 
 var app = builder.Build();

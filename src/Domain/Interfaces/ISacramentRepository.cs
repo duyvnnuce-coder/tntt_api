@@ -13,4 +13,6 @@ public interface ISacramentRepository
     Task<bool> ExistsStudentSacramentAsync(
         Guid studentId,
         SacramentType type);
+
+    Task<List<Sacrament>> GetListAsync(Guid? studentId);
 }

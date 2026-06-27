@@ -10,6 +10,12 @@ public interface IStudentRepository
 
     Task<bool> ExistsAsync(Guid id);
 
+    Task<List<Student>> GetListAsync();
+
+    Task UpdateAsync(Student student);
+
+    Task DeleteAsync(Student student);
+
     Task AddAsync(
         Student student,
         StudentEnrollment enrollment,

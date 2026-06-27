@@ -17,8 +17,17 @@ public class StudentRepository : IStudentRepository
     public async Task<Student?> GetByIdAsync(Guid id)
     {
         return await _context.Students
+            .Include(x => x.Parish)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
+
+    public async Task<Student?> GetDetailByIdAsync(Guid id)
+    {
+        return await _context.Students
+            .Include(x => x.Parish)
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
 
     public async Task<Student?> GetByCodeAsync(string code)
     {
@@ -40,6 +49,28 @@ public class StudentRepository : IStudentRepository
         await _context.Students.AddAsync(student);
         await _context.StudentEnrollments.AddAsync(enrollment);
         await _context.StudentCards.AddAsync(studentCard);
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Student>> GetListAsync()
+    {
+        return await _context.Students
+            .AsNoTracking()
+            .OrderBy(x => x.Code)
+            .ToListAsync();
+    }
+
+    public async Task UpdateAsync(Student student)
+    {
+        _context.Students.Update(student);
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Student student)
+    {
+        _context.Students.Remove(student);
 
         await _context.SaveChangesAsync();
     }

@@ -1,6 +1,7 @@
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-
+using Infrastructure;
+using WebApi.Middlewares;
 using Application.Common.Interfaces;
 using Infrastructure.Services;
 
@@ -59,6 +60,16 @@ using Application.Features.GeneratedExams.CreateGeneratedExam;
 using Application.Features.GeneratedExams.GetGeneratedExamById;
 using Application.Features.GeneratedExams.GetGeneratedExamList;
 using Application.Features.GeneratedExams.UpdateGeneratedExam;
+using Application.Features.Students.GetStudentList;
+using Application.Features.Students.UpdateStudent;
+using Application.Features.Students.DeleteStudent;
+using Application.Features.Teachers.GetTeacherList;
+using Application.Features.Teachers.UpdateTeacher;
+using Application.Features.Teachers.DeleteTeacher;
+using Application.Features.Assistants.GetAssistantById;
+using Application.Features.Assistants.GetAssistantList;
+using Application.Features.Assistants.UpdateAssistant;
+using Application.Features.Assistants.DeleteAssistant;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -74,82 +85,7 @@ builder.Services.AddScoped<IApplicationDbContext>(sp =>
 
 
 // Repository
-builder.Services.AddScoped<IParishRepository, ParishRepository>();
-builder.Services.AddScoped<ICatechismClassRepository, CatechismClassRepository>();
-builder.Services.AddScoped<IExamBlueprintRepository, ExamBlueprintRepository>();
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
-builder.Services.AddScoped<IStudentCardRepository, StudentCardRepository>();
-builder.Services.AddScoped<ICatechismGradeRepository, CatechismGradeRepository>();
-builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
-builder.Services.AddScoped<IAssistantRepository, AssistantRepository>();
-builder.Services.AddScoped<ISacramentRepository, SacramentRepository>();
-builder.Services.AddScoped<IQuestionCategoryRepository, QuestionCategoryRepository>();
-builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-builder.Services.AddScoped<IExamBlueprintDetailRepository, ExamBlueprintDetailRepository>();
-builder.Services.AddScoped<IExamRepository, ExamRepository>();
-builder.Services.AddScoped<IExamScoreRepository, ExamScoreRepository>();
-builder.Services.AddScoped<IGeneratedExamRepository, GeneratedExamRepository>();
-
-
-// Services
-builder.Services.AddScoped<ICodeGenerator, CodeGenerator>();
-builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
-builder.Services.AddScoped<IAcademicYearRepository, AcademicYearRepository>();
-builder.Services.AddScoped<CreateAssignmentHandler>();
-builder.Services.AddScoped<IAttendanceSessionRepository, AttendanceSessionRepository>();
-builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
-builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-
-// Handlers
-builder.Services.AddScoped<CreateParishHandler>();
-builder.Services.AddScoped<CreateStudentHandler>();
-builder.Services.AddScoped<CreateTeacherHandler>();
-builder.Services.AddScoped<CreateAssistantHandler>();
-builder.Services.AddScoped<CreateCatechismClassHandler>();
-builder.Services.AddScoped<CreateSacramentHandler>();
-builder.Services.AddScoped<CreateCatechismGradeHandler>();
-builder.Services.AddScoped<CreateAcademicYearHandler>();
-builder.Services.AddScoped<CreateAttendanceSessionHandler>();
-builder.Services.AddScoped<CreateAttendanceHandler>();
-builder.Services.AddScoped<GetSacramentByIdHandler>();
-builder.Services.AddScoped<CreateStudentCardHandler>();
-builder.Services.AddScoped<GetStudentCardListHandler>();
-builder.Services.AddScoped<GetStudentCardByStudentIdHandler>();
-builder.Services.AddScoped<UpdateStudentCardStatusHandler>();
-builder.Services.AddScoped<ReissueStudentCardHandler>();
-builder.Services.AddScoped<GetStudentCardByIdHandler>();
-builder.Services.AddScoped<CreateSemesterHandler>();
-builder.Services.AddScoped<CreateStudentEnrollmentHandler>();
-builder.Services.AddScoped<GetStudentEnrollmentByIdHandler>();
-builder.Services.AddScoped<GetStudentEnrollmentListHandler>();
-builder.Services.AddScoped<UpdateStudentEnrollmentHandler>();
-builder.Services.AddScoped<CreateQuestionCategoryHandler>();
-builder.Services.AddScoped<GetQuestionCategoryByIdHandler>();
-builder.Services.AddScoped<GetQuestionCategoryListHandler>();
-builder.Services.AddScoped<UpdateQuestionCategoryHandler>();
-builder.Services.AddScoped<CreateQuestionHandler>();
-builder.Services.AddScoped<GetQuestionByIdHandler>();
-builder.Services.AddScoped<GetQuestionListHandler>();
-builder.Services.AddScoped<UpdateQuestionHandler>();
-builder.Services.AddScoped<CreateExamBlueprintHandler>();
-builder.Services.AddScoped<GetExamBlueprintByIdHandler>();
-builder.Services.AddScoped<GetExamBlueprintListHandler>();
-builder.Services.AddScoped<UpdateExamBlueprintHandler>();
-builder.Services.AddScoped<IExamBlueprintDetailRepository, ExamBlueprintDetailRepository>();
-builder.Services.AddScoped<CreateExamHandler>();
-builder.Services.AddScoped<GetExamByIdHandler>();
-builder.Services.AddScoped<GetExamListHandler>();
-builder.Services.AddScoped<UpdateExamHandler>();
-builder.Services.AddScoped<CreateExamScoreHandler>();
-builder.Services.AddScoped<GetExamScoreByIdHandler>();
-builder.Services.AddScoped<GetExamScoreListHandler>();
-builder.Services.AddScoped<UpdateExamScoreHandler>();
-builder.Services.AddScoped<CreateGeneratedExamHandler>();
-builder.Services.AddScoped<GetGeneratedExamByIdHandler>();
-builder.Services.AddScoped<GetGeneratedExamListHandler>();
-builder.Services.AddScoped<UpdateGeneratedExamHandler>();
-
+builder.Services.AddInfrastructure(builder.Configuration);
 
 
 
@@ -163,6 +99,29 @@ builder.Services.AddSwaggerGen();
 
 //get
 builder.Services.AddScoped<GetSacramentListHandler>();
+builder.Services.AddScoped<GetStudentListHandler>();
+builder.Services.AddScoped<UpdateStudentHandler>();
+builder.Services.AddScoped<DeleteStudentHandler>();
+builder.Services.AddScoped<GetTeacherListHandler>();
+builder.Services.AddScoped<UpdateTeacherHandler>();
+builder.Services.AddScoped<DeleteTeacherHandler>();
+builder.Services.AddScoped<GetAssistantByIdHandler>();
+builder.Services.AddScoped<GetAssistantListHandler>();
+builder.Services.AddScoped<UpdateAssistantHandler>();
+builder.Services.AddScoped<DeleteAssistantHandler>();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var app = builder.Build();
@@ -175,6 +134,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseAuthorization();
 

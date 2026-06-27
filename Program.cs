@@ -19,6 +19,7 @@ using Application.Features.Assignments.CreateAssignment;
 using Application.Features.AttendanceSessions.CreateAttendanceSession;
 using Application.Features.CatechismGrades.CreateCatechismGrade;
 using Application.Features.Attendances.CreateAttendance;
+using Application.Features.Sacraments.GetSacramentById;
 
 
 
@@ -67,7 +68,7 @@ builder.Services.AddScoped<CreateCatechismGradeHandler>();
 builder.Services.AddScoped<CreateAcademicYearHandler>();
 builder.Services.AddScoped<CreateAttendanceSessionHandler>();
 builder.Services.AddScoped<CreateAttendanceHandler>();
-
+builder.Services.AddScoped<GetSacramentByIdHandler>();
 
 builder.Services.AddScoped<CreateSemesterHandler>();
 

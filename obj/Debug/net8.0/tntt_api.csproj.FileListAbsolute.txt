@@ -1,0 +1,8 @@
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.AssemblyReference.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfoInputs.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.AssemblyInfo.cs
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.csproj.CoreCompileInputs.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\duynu\AndroidStudioProjects\tntt_api\obj\Debug\net8.0\tntt_api.sourcelink.json

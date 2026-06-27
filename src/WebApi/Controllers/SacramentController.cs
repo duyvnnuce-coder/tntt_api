@@ -1,4 +1,5 @@
 using Application.Features.Sacraments.CreateSacrament;
+using Application.Features.Sacraments.GetSacramentById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
@@ -8,11 +9,14 @@ namespace WebApi.Controllers;
 public class SacramentController : ControllerBase
 {
     private readonly CreateSacramentHandler _createHandler;
+    private readonly GetSacramentByIdHandler _getByIdHandler;
 
     public SacramentController(
-        CreateSacramentHandler createHandler)
+        CreateSacramentHandler createHandler,
+        GetSacramentByIdHandler getByIdHandler)
     {
         _createHandler = createHandler;
+        _getByIdHandler = getByIdHandler;
     }
 
     [HttpPost]
@@ -22,6 +26,21 @@ public class SacramentController : ControllerBase
 
         if (!result.Success)
             return BadRequest(result);
+
+        return Ok(result);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var result = await _getByIdHandler.Handle(
+            new GetSacramentByIdRequest
+            {
+                Id = id
+            });
+
+        if (!result.Success)
+            return NotFound(result);
 
         return Ok(result);
     }

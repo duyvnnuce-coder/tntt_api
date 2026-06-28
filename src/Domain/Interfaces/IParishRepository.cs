@@ -8,15 +8,22 @@ public interface IParishRepository
         Parish parish,
         CancellationToken cancellationToken = default);
 
-    Task<Parish?> GetByIdAsync(Guid id);
+    Task<Parish?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default);
 
-    Task<List<Parish>> GetListAsync();
-
-    Task UpdateAsync(Parish parish);
-
-    Task DeleteAsync(Parish parish);
+    Task<List<Parish>> GetListAsync(
+        CancellationToken cancellationToken = default);
 
     Task<bool> ExistsAsync(
         Guid id,
+        CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(
+        Parish parish,
+        CancellationToken cancellationToken = default);
+
+    Task DeleteAsync(
+        Parish parish,
         CancellationToken cancellationToken = default);
 }

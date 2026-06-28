@@ -12,7 +12,7 @@ public class CreateParishHandler
         _parishRepository = parishRepository;
     }
 
-    public async Task<CreateParishResult> Handle(CreateParishCommand request)
+    public async Task<CreateParishResult> Handle(CreateParishRequest request)
     {
         var parish = new Parish
         {
@@ -23,7 +23,6 @@ public class CreateParishHandler
         };
 
         await _parishRepository.AddAsync(parish);
-        await _parishRepository.SaveChangesAsync();
 
         return new CreateParishResult
         {

@@ -6,6 +6,7 @@ public enum CodeType
     Teacher,
     Assistant,
     CatechismClass,
+    CatechismGrade,
     AcademicYear,
     Semester,
     QuestionCategory,

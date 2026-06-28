@@ -58,4 +58,40 @@ public class ParishRepository : IParishRepository
             new object[] { id },
             cancellationToken) != null;
     }
+
+    public async Task<Parish?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Parishes
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    }
+
+    public async Task<List<Parish>> GetListAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Parishes
+            .OrderBy(x => x.Name)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task UpdateAsync(
+        Parish parish,
+        CancellationToken cancellationToken = default)
+    {
+        _context.Parishes.Update(parish);
+
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeleteAsync(
+        Parish parish,
+        CancellationToken cancellationToken = default)
+    {
+        parish.IsActive = false;
+
+        _context.Parishes.Update(parish);
+
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

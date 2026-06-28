@@ -1,23 +1,36 @@
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
 public class SemesterRepository : ISemesterRepository
 {
-    private readonly AppDbContext _context;
+    private readonly IApplicationDbContext _context;
 
-    public SemesterRepository(AppDbContext context)
+    public SemesterRepository(IApplicationDbContext context)
     {
         _context = context;
     }
 
     public async Task AddAsync(Semester semester)
     {
-        await _context.Semesters.AddAsync(semester);
+        _context.Semesters.Add(semester);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Semester>> GetListAsync()
+    {
+        return await _context.Semesters
+            .OrderBy(x => x.SemesterOrder)
+            .ToListAsync();
+    }
+
+    public async Task<Semester?> GetByIdAsync(Guid id)
+    {
+        return await _context.Semesters
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<bool> ExistsAsync(Guid id)
@@ -30,5 +43,17 @@ public class SemesterRepository : ISemesterRepository
         return await _context.Semesters.AnyAsync(x =>
             x.AcademicYearId == academicYearId &&
             x.IsCurrent);
+    }
+
+    public async Task UpdateAsync(Semester semester)
+    {
+        _context.Semesters.Update(semester);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Semester semester)
+    {
+        _context.Semesters.Remove(semester);
+        await _context.SaveChangesAsync();
     }
 }

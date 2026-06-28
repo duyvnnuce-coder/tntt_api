@@ -70,6 +70,23 @@ using Application.Features.Assistants.GetAssistantById;
 using Application.Features.Assistants.GetAssistantList;
 using Application.Features.Assistants.UpdateAssistant;
 using Application.Features.Assistants.DeleteAssistant;
+using Application.Features.Parishes.GetParishById;
+using Application.Features.Parishes.GetParishList;
+using Application.Features.Parishes.UpdateParish;
+using Application.Features.Parishes.DeleteParish;
+using Application.Features.AcademicYears.GetAcademicYearById;
+using Application.Features.AcademicYears.GetAcademicYearList;
+using Application.Features.AcademicYears.UpdateAcademicYear;
+using Application.Features.AcademicYears.DeleteAcademicYear;
+using Application.Features.Semesters.GetSemesterList;
+using Application.Features.Semesters.GetSemesterById;
+using Application.Features.Semesters.UpdateSemester;
+using Application.Features.Semesters.DeleteSemester;
+
+using Application.Features.CatechismGrades.GetCatechismGradeList;
+using Application.Features.CatechismGrades.GetCatechismGradeById;
+using Application.Features.CatechismGrades.UpdateCatechismGrade;
+using Application.Features.CatechismGrades.DeleteCatechismGrade;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -109,6 +126,35 @@ builder.Services.AddScoped<GetAssistantByIdHandler>();
 builder.Services.AddScoped<GetAssistantListHandler>();
 builder.Services.AddScoped<UpdateAssistantHandler>();
 builder.Services.AddScoped<DeleteAssistantHandler>();
+builder.Services.AddScoped<GetParishByIdHandler>();
+builder.Services.AddScoped<GetParishListHandler>();
+builder.Services.AddScoped<UpdateParishHandler>();
+builder.Services.AddScoped<DeleteParishHandler>();
+builder.Services.AddScoped<GetAcademicYearByIdHandler>();
+builder.Services.AddScoped<GetAcademicYearListHandler>();
+builder.Services.AddScoped<UpdateAcademicYearHandler>();
+builder.Services.AddScoped<DeleteAcademicYearHandler>();
+builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
+builder.Services.AddScoped<ICatechismGradeRepository, CatechismGradeRepository>();
+
+
+
+
+
+
+builder.Services.AddScoped<CreateCatechismGradeHandler>();
+
+builder.Services.AddScoped<GetCatechismGradeListHandler>();
+
+builder.Services.AddScoped<GetCatechismGradeByIdHandler>();
+
+builder.Services.AddScoped<UpdateCatechismGradeHandler>();
+
+builder.Services.AddScoped<DeleteCatechismGradeHandler>();
+builder.Services.AddScoped<GetSemesterListHandler>();
+builder.Services.AddScoped<GetSemesterByIdHandler>();
+builder.Services.AddScoped<UpdateSemesterHandler>();
+builder.Services.AddScoped<DeleteSemesterHandler>();
 
 
 

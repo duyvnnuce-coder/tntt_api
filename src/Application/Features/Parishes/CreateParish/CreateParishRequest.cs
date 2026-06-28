@@ -1,6 +1,6 @@
 namespace Application.Features.Parishes.CreateParish;
 
-public class CreateParishCommand
+public class CreateParishRequest
 {
     public string Name { get; set; } = string.Empty;
 

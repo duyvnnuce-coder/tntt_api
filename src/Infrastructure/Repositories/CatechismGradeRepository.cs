@@ -1,23 +1,30 @@
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
 public class CatechismGradeRepository : ICatechismGradeRepository
 {
-    private readonly AppDbContext _context;
+    private readonly IApplicationDbContext _context;
 
-    public CatechismGradeRepository(AppDbContext context)
+    public CatechismGradeRepository(IApplicationDbContext context)
     {
         _context = context;
     }
 
     public async Task AddAsync(CatechismGrade grade)
     {
-        await _context.CatechismGrades.AddAsync(grade);
+        _context.CatechismGrades.Add(grade);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<CatechismGrade>> GetListAsync()
+    {
+        return await _context.CatechismGrades
+            .OrderBy(x => x.DisplayOrder)
+            .ToListAsync();
     }
 
     public async Task<CatechismGrade?> GetByIdAsync(Guid id)
@@ -30,5 +37,17 @@ public class CatechismGradeRepository : ICatechismGradeRepository
     {
         return await _context.CatechismGrades
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task UpdateAsync(CatechismGrade grade)
+    {
+        _context.CatechismGrades.Update(grade);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(CatechismGrade grade)
+    {
+        _context.CatechismGrades.Remove(grade);
+        await _context.SaveChangesAsync();
     }
 }

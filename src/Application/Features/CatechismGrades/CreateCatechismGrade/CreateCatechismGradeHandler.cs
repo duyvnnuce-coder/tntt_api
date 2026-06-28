@@ -1,3 +1,5 @@
+using Application.Common.Enums;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
 
@@ -7,17 +9,19 @@ public class CreateCatechismGradeHandler
 {
     private readonly ICatechismGradeRepository _repository;
     private readonly IParishRepository _parishRepository;
+    private readonly ICodeGenerator _codeGenerator;
 
     public CreateCatechismGradeHandler(
         ICatechismGradeRepository repository,
-        IParishRepository parishRepository)
+        IParishRepository parishRepository,
+        ICodeGenerator codeGenerator)
     {
         _repository = repository;
         _parishRepository = parishRepository;
+        _codeGenerator = codeGenerator;
     }
 
-    public async Task<CreateCatechismGradeResult> Handle(
-        CreateCatechismGradeRequest request)
+    public async Task<CreateCatechismGradeResult> Handle(CreateCatechismGradeRequest request)
     {
         var errors = CreateCatechismGradeValidator.Validate(request);
 
@@ -39,10 +43,14 @@ public class CreateCatechismGradeHandler
             };
         }
 
+        var code = await _codeGenerator.GenerateAsync(
+            CodeType.CatechismGrade,
+            request.ParishId);
+
         var grade = new CatechismGrade
         {
             ParishId = request.ParishId,
-            Code = request.Code,
+            Code = code,
             Name = request.Name,
             DisplayOrder = request.DisplayOrder,
             IsActive = request.IsActive

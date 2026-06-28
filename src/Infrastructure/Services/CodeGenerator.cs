@@ -50,6 +50,22 @@ public class CodeGenerator : ICodeGenerator
                     .ToListAsync(cancellationToken)
                     .ContinueWith(ParseMax),
 
+            CodeType.AcademicYear =>
+                await _context.AcademicYears
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
+
+            CodeType.CatechismGrade =>
+                await _context.CatechismGrades
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
+
             _ => 0
         };
 
@@ -76,6 +92,7 @@ public class CodeGenerator : ICodeGenerator
             CodeType.Teacher => "GV",
             CodeType.Assistant => "TR",
             CodeType.CatechismClass => "LH",
+            CodeType.CatechismGrade => "KG",
             CodeType.AcademicYear => "NH",
             CodeType.Semester => "HK",
             CodeType.QuestionCategory => "CD",

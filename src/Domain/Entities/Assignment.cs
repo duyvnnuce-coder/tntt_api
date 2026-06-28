@@ -8,7 +8,7 @@ public class Assignment : BaseEntity
 
     public Guid? AssistantId { get; set; }
 
-    public Guid ClassId { get; set; }
+    public Guid CatechismClassId { get; set; }
 
     public Guid SemesterId { get; set; }
 
@@ -25,7 +25,7 @@ public class Assignment : BaseEntity
 
     public Assistant? Assistant { get; set; }
 
-    public CatechismClass Class { get; set; } = null!;
+    public CatechismClass CatechismClass { get; set; } = null!;
 
     public Semester Semester { get; set; } = null!;
 }

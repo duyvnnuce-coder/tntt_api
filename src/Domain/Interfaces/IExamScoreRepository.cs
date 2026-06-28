@@ -12,5 +12,7 @@ public interface IExamScoreRepository
 
     Task UpdateAsync(ExamScore entity);
 
+    Task DeleteAsync(ExamScore entity);
+
     Task<bool> ExistsAsync(Guid id);
 }

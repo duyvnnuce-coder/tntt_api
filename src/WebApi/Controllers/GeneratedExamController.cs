@@ -1,4 +1,5 @@
 using Application.Features.GeneratedExams.CreateGeneratedExam;
+using Application.Features.GeneratedExams.DeleteGeneratedExam;
 using Application.Features.GeneratedExams.GetGeneratedExamById;
 using Application.Features.GeneratedExams.GetGeneratedExamList;
 using Application.Features.GeneratedExams.UpdateGeneratedExam;
@@ -10,70 +11,51 @@ namespace WebApi.Controllers;
 [Route("api/generated-exams")]
 public class GeneratedExamController : ControllerBase
 {
-    private readonly CreateGeneratedExamHandler _createHandler;
-    private readonly GetGeneratedExamByIdHandler _getByIdHandler;
-    private readonly GetGeneratedExamListHandler _getListHandler;
-    private readonly UpdateGeneratedExamHandler _updateHandler;
-
-    public GeneratedExamController(
-        CreateGeneratedExamHandler createHandler,
-        GetGeneratedExamByIdHandler getByIdHandler,
-        GetGeneratedExamListHandler getListHandler,
-        UpdateGeneratedExamHandler updateHandler)
-    {
-        _createHandler = createHandler;
-        _getByIdHandler = getByIdHandler;
-        _getListHandler = getListHandler;
-        _updateHandler = updateHandler;
-    }
-
     [HttpPost]
-    public async Task<IActionResult> Create(CreateGeneratedExamRequest request)
+    public async Task<IActionResult> Create(
+        [FromServices] CreateGeneratedExamHandler handler,
+        CreateGeneratedExamRequest request)
     {
-        var result = await _createHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
-    {
-        var result = await _getByIdHandler.Handle(
-            new GetGeneratedExamByIdRequest
-            {
-                Id = id
-            });
-
-        if (!result.Success)
-            return NotFound(result);
-
-        return Ok(result);
+        return Ok(await handler.Handle(request));
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList(
-        [FromQuery] GetGeneratedExamListRequest request)
+        [FromServices] GetGeneratedExamListHandler handler)
     {
-        var result = await _getListHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
+        return Ok(await handler.Handle(new GetGeneratedExamListRequest()));
     }
 
-    [HttpPut]
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(
+        [FromServices] GetGeneratedExamByIdHandler handler,
+        Guid id)
+    {
+        return Ok(await handler.Handle(new GetGeneratedExamByIdRequest
+        {
+            Id = id
+        }));
+    }
+
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
+        [FromServices] UpdateGeneratedExamHandler handler,
+        Guid id,
         UpdateGeneratedExamRequest request)
     {
-        var result = await _updateHandler.Handle(request);
+        request.Id = id;
 
-        if (!result.Success)
-            return BadRequest(result);
+        return Ok(await handler.Handle(request));
+    }
 
-        return Ok(result);
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(
+        [FromServices] DeleteGeneratedExamHandler handler,
+        Guid id)
+    {
+        return Ok(await handler.Handle(new DeleteGeneratedExamRequest
+        {
+            Id = id
+        }));
     }
 }

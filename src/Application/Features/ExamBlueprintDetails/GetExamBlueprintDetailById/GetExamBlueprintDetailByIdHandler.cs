@@ -15,42 +15,31 @@ public class GetExamBlueprintDetailByIdHandler
     public async Task<GetExamBlueprintDetailByIdResult> Handle(
         GetExamBlueprintDetailByIdRequest request)
     {
-        var errors =
-            GetExamBlueprintDetailByIdValidator.Validate(request);
-
-        if (errors.Any())
-        {
-            return new GetExamBlueprintDetailByIdResult
-            {
-                Success = false,
-                Message = string.Join(Environment.NewLine, errors)
-            };
-        }
-
         var entity = await _repository.GetByIdAsync(request.Id);
 
-        if (entity == null)
+        if (entity is null)
         {
             return new GetExamBlueprintDetailByIdResult
             {
                 Success = false,
-                Message = "Exam blueprint detail not found."
+                Message = "Không tìm thấy chi tiết ma trận đề."
             };
         }
 
         return new GetExamBlueprintDetailByIdResult
         {
             Success = true,
-            Message = "Success.",
+            Message = "Lấy chi tiết ma trận đề thành công.",
             Data = new GetExamBlueprintDetailByIdResponse
             {
                 Id = entity.Id,
+
                 ExamBlueprintId = entity.ExamBlueprintId,
-                ExamBlueprintCode = entity.ExamBlueprint.Code,
                 ExamBlueprintName = entity.ExamBlueprint.Name,
+
                 QuestionCategoryId = entity.QuestionCategoryId,
-                QuestionCategoryCode = entity.QuestionCategory.Code,
                 QuestionCategoryName = entity.QuestionCategory.Name,
+
                 EasyQuestions = entity.EasyQuestions,
                 MediumQuestions = entity.MediumQuestions,
                 HardQuestions = entity.HardQuestions

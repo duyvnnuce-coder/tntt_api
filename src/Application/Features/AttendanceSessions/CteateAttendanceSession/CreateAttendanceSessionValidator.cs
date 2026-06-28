@@ -2,7 +2,8 @@ namespace Application.Features.AttendanceSessions.CreateAttendanceSession;
 
 public static class CreateAttendanceSessionValidator
 {
-    public static List<string> Validate(CreateAttendanceSessionRequest request)
+    public static List<string> Validate(
+        CreateAttendanceSessionRequest request)
     {
         var errors = new List<string>();
 
@@ -11,9 +12,6 @@ public static class CreateAttendanceSessionValidator
 
         if (request.LessonNumber <= 0)
             errors.Add("LessonNumber must be greater than 0.");
-
-        if (request.AttendanceDate == default)
-            errors.Add("AttendanceDate is required.");
 
         return errors;
     }

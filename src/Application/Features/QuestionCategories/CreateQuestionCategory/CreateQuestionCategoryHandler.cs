@@ -1,3 +1,5 @@
+using Application.Common.Enums;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
 
@@ -5,68 +7,56 @@ namespace Application.Features.QuestionCategories.CreateQuestionCategory;
 
 public class CreateQuestionCategoryHandler
 {
-    private readonly IParishRepository _parishRepository;
     private readonly IQuestionCategoryRepository _repository;
+    private readonly ICodeGenerator _codeGenerator;
 
     public CreateQuestionCategoryHandler(
-        IParishRepository parishRepository,
-        IQuestionCategoryRepository repository)
+        IQuestionCategoryRepository repository,
+        ICodeGenerator codeGenerator)
     {
-        _parishRepository = parishRepository;
         _repository = repository;
+        _codeGenerator = codeGenerator;
     }
 
     public async Task<CreateQuestionCategoryResult> Handle(
         CreateQuestionCategoryRequest request)
     {
-        var errors =
-            CreateQuestionCategoryValidator.Validate(request);
-
-        if (errors.Any())
+        if (await _repository.ExistsNameAsync(
+            request.ParishId,
+            request.Name))
         {
             return new CreateQuestionCategoryResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
+                Message = "Tên nhóm câu hỏi đã tồn tại."
             };
         }
 
-        var parish = await _parishRepository.GetByIdAsync(request.ParishId);
+        var code = await _codeGenerator.GenerateAsync(
+            CodeType.QuestionCategory,
+            request.ParishId);
 
-        if (parish == null)
+        var category = new QuestionCategory
         {
-            return new CreateQuestionCategoryResult
-            {
-                Success = false,
-                Message = "Parish not found."
-            };
-        }
-
-        var entity = new QuestionCategory
-        {
+            Id = Guid.NewGuid(),
             ParishId = request.ParishId,
-            Code = request.Code.Trim(),
-            Name = request.Name.Trim(),
+            Code = code,
+            Name = request.Name,
             Description = request.Description,
             IsActive = request.IsActive
         };
 
-        await _repository.AddAsync(entity);
+        await _repository.AddAsync(category);
 
         return new CreateQuestionCategoryResult
         {
             Success = true,
-            Message = "Question category created successfully.",
+            Message = "Tạo nhóm câu hỏi thành công.",
             Data = new CreateQuestionCategoryResponse
             {
-                Id = entity.Id,
-                ParishId = entity.ParishId,
-                ParishCode = parish.Code,
-                ParishName = parish.Name,
-                Code = entity.Code,
-                Name = entity.Name,
-                Description = entity.Description,
-                IsActive = entity.IsActive
+                Id = category.Id,
+                Code = category.Code,
+                Name = category.Name
             }
         };
     }

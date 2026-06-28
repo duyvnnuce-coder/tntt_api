@@ -1,22 +1,22 @@
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
 public class StudentEnrollmentRepository : IStudentEnrollmentRepository
 {
-    private readonly AppDbContext _context;
+    private readonly IApplicationDbContext _context;
 
-    public StudentEnrollmentRepository(AppDbContext context)
+    public StudentEnrollmentRepository(IApplicationDbContext context)
     {
         _context = context;
     }
 
     public async Task AddAsync(StudentEnrollment enrollment)
     {
-        await _context.StudentEnrollments.AddAsync(enrollment);
+        _context.StudentEnrollments.Add(enrollment);
         await _context.SaveChangesAsync();
     }
 
@@ -33,7 +33,7 @@ public class StudentEnrollmentRepository : IStudentEnrollmentRepository
         return await _context.StudentEnrollments
             .Include(x => x.Student)
             .Include(x => x.CatechismClass)
-            .OrderByDescending(x => x.JoinDate)
+            .OrderBy(x => x.JoinDate)
             .ToListAsync();
     }
 
@@ -47,15 +47,29 @@ public class StudentEnrollmentRepository : IStudentEnrollmentRepository
                 x.IsCurrent);
     }
 
-    public async Task UpdateAsync(StudentEnrollment enrollment)
+    public async Task<bool> ExistsCurrentAsync(Guid studentId)
     {
-        _context.StudentEnrollments.Update(enrollment);
-        await _context.SaveChangesAsync();
+        return await _context.StudentEnrollments
+            .AnyAsync(x =>
+                x.StudentId == studentId &&
+                x.IsCurrent);
     }
 
     public async Task<bool> ExistsAsync(Guid id)
     {
         return await _context.StudentEnrollments
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task UpdateAsync(StudentEnrollment enrollment)
+    {
+        _context.StudentEnrollments.Update(enrollment);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(StudentEnrollment enrollment)
+    {
+        _context.StudentEnrollments.Remove(enrollment);
+        await _context.SaveChangesAsync();
     }
 }

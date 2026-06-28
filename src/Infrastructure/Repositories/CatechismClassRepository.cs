@@ -31,4 +31,23 @@ public class CatechismClassRepository : ICatechismClassRepository
         await _context.CatechismClasses.AddAsync(catechismClass);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<List<CatechismClass>> GetListAsync()
+    {
+        return await _context.CatechismClasses
+            .OrderBy(x => x.DisplayOrder)
+            .ToListAsync();
+    }
+
+    public async Task UpdateAsync(CatechismClass catechismClass)
+    {
+        _context.CatechismClasses.Update(catechismClass);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(CatechismClass catechismClass)
+    {
+        _context.CatechismClasses.Remove(catechismClass);
+        await _context.SaveChangesAsync();
+    }
 }

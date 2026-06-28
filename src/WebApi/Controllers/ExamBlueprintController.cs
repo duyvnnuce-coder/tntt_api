@@ -3,6 +3,7 @@ using Application.Features.ExamBlueprints.GetExamBlueprintById;
 using Application.Features.ExamBlueprints.GetExamBlueprintList;
 using Application.Features.ExamBlueprints.UpdateExamBlueprint;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.ExamBlueprints.DeleteExamBlueprint;
 
 namespace WebApi.Controllers;
 
@@ -14,17 +15,22 @@ public class ExamBlueprintController : ControllerBase
     private readonly GetExamBlueprintByIdHandler _getByIdHandler;
     private readonly GetExamBlueprintListHandler _getListHandler;
     private readonly UpdateExamBlueprintHandler _updateHandler;
+    private readonly DeleteExamBlueprintHandler _deleteHandler;
+
+
 
     public ExamBlueprintController(
         CreateExamBlueprintHandler createHandler,
         GetExamBlueprintByIdHandler getByIdHandler,
         GetExamBlueprintListHandler getListHandler,
-        UpdateExamBlueprintHandler updateHandler)
+        UpdateExamBlueprintHandler updateHandler,
+        DeleteExamBlueprintHandler deleteHandler)
     {
         _createHandler = createHandler;
         _getByIdHandler = getByIdHandler;
         _getListHandler = getListHandler;
         _updateHandler = updateHandler;
+        _deleteHandler = deleteHandler;
     }
 
     [HttpPost]
@@ -75,5 +81,15 @@ public class ExamBlueprintController : ControllerBase
             return BadRequest(result);
 
         return Ok(result);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        return Ok(await _deleteHandler.Handle(
+            new DeleteExamBlueprintRequest
+            {
+                Id = id
+            }));
     }
 }

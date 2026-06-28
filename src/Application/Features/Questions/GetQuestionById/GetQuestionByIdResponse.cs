@@ -4,17 +4,11 @@ public class GetQuestionByIdResponse
 {
     public Guid Id { get; set; }
 
+    public Guid ParishId { get; set; }
+
     public Guid QuestionCategoryId { get; set; }
 
-    public string QuestionCategoryCode { get; set; } = string.Empty;
-
-    public string QuestionCategoryName { get; set; } = string.Empty;
-
-    public Guid CatechismGradeId { get; set; }
-
-    public string CatechismGradeCode { get; set; } = string.Empty;
-
-    public string CatechismGradeName { get; set; } = string.Empty;
+    public string CategoryName { get; set; } = string.Empty;
 
     public string Code { get; set; } = string.Empty;
 

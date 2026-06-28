@@ -24,7 +24,7 @@ public class ExamRepository : IExamRepository
     {
         return await _context.Exams
             .Include(x => x.Assignment)
-                .ThenInclude(x => x.Class)
+                .ThenInclude(x => x.CatechismClass)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -32,7 +32,7 @@ public class ExamRepository : IExamRepository
     {
         return await _context.Exams
             .Include(x => x.Assignment)
-                .ThenInclude(x => x.Class)
+                 .ThenInclude(x => x.CatechismClass)
             .OrderByDescending(x => x.ExamDate)
             .ThenBy(x => x.Code)
             .ToListAsync();
@@ -48,5 +48,11 @@ public class ExamRepository : IExamRepository
     {
         return await _context.Exams
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task DeleteAsync(Exam entity)
+    {
+        _context.Exams.Remove(entity);
+        await _context.SaveChangesAsync();
     }
 }

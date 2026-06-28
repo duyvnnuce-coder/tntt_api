@@ -46,4 +46,10 @@ public class ExamBlueprintRepository : IExamBlueprintRepository
         return await _context.ExamBlueprints
             .AnyAsync(x => x.Id == id);
     }
+
+    public async Task DeleteAsync(ExamBlueprint entity)
+    {
+        _context.ExamBlueprints.Remove(entity);
+        await _context.SaveChangesAsync();
+    }
 }

@@ -4,8 +4,6 @@ public class UpdateExamBlueprintDetailRequest
 {
     public Guid Id { get; set; }
 
-    public Guid ExamBlueprintId { get; set; }
-
     public Guid QuestionCategoryId { get; set; }
 
     public int EasyQuestions { get; set; }

@@ -2,11 +2,9 @@ namespace Application.Features.Questions.CreateQuestion;
 
 public class CreateQuestionRequest
 {
+    public Guid ParishId { get; set; }
+
     public Guid QuestionCategoryId { get; set; }
-
-    public Guid CatechismGradeId { get; set; }
-
-    public string Code { get; set; } = string.Empty;
 
     public string Content { get; set; } = string.Empty;
 
@@ -14,9 +12,9 @@ public class CreateQuestionRequest
 
     public string AnswerB { get; set; } = string.Empty;
 
-    public string? AnswerC { get; set; }
+    public string AnswerC { get; set; } = string.Empty;
 
-    public string? AnswerD { get; set; }
+    public string AnswerD { get; set; } = string.Empty;
 
     public string CorrectAnswer { get; set; } = string.Empty;
 

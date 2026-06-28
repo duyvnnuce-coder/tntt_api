@@ -66,6 +66,22 @@ public class CodeGenerator : ICodeGenerator
                     .ToListAsync(cancellationToken)
                     .ContinueWith(ParseMax),
 
+            CodeType.QuestionCategory =>
+                await _context.QuestionCategories
+                    .Where(x => x.ParishId == parishId &&
+                                x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
+
+            CodeType.Question =>
+                await _context.Questions
+                    .Where(x => x.Code.StartsWith(start))
+                    .Select(x => x.Code)
+                    .ToListAsync(cancellationToken)
+                    .ContinueWith(ParseMax),
+
+
             _ => 0
         };
 

@@ -6,10 +6,6 @@ public class UpdateQuestionRequest
 
     public Guid QuestionCategoryId { get; set; }
 
-    public Guid CatechismGradeId { get; set; }
-
-    public string Code { get; set; } = string.Empty;
-
     public string Content { get; set; } = string.Empty;
 
     public string AnswerA { get; set; } = string.Empty;

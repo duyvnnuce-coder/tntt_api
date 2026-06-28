@@ -32,6 +32,7 @@ public class GeneratedExamRepository : IGeneratedExamRepository
         return await _context.GeneratedExams
             .Include(x => x.ExamBlueprint)
             .OrderByDescending(x => x.GeneratedAt)
+            .ThenBy(x => x.Code)
             .ToListAsync();
     }
 
@@ -41,9 +42,21 @@ public class GeneratedExamRepository : IGeneratedExamRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task DeleteAsync(GeneratedExam entity)
+    {
+        _context.GeneratedExams.Remove(entity);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<bool> ExistsAsync(Guid id)
     {
         return await _context.GeneratedExams
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> ExistsCodeAsync(string code)
+    {
+        return await _context.GeneratedExams
+            .AnyAsync(x => x.Code == code);
     }
 }

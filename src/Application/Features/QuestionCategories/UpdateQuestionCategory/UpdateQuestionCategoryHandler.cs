@@ -5,76 +5,54 @@ namespace Application.Features.QuestionCategories.UpdateQuestionCategory;
 public class UpdateQuestionCategoryHandler
 {
     private readonly IQuestionCategoryRepository _repository;
-    private readonly IParishRepository _parishRepository;
 
     public UpdateQuestionCategoryHandler(
-        IQuestionCategoryRepository repository,
-        IParishRepository parishRepository)
+        IQuestionCategoryRepository repository)
     {
         _repository = repository;
-        _parishRepository = parishRepository;
     }
 
     public async Task<UpdateQuestionCategoryResult> Handle(
         UpdateQuestionCategoryRequest request)
     {
-        var errors =
-            UpdateQuestionCategoryValidator.Validate(request);
+        var category = await _repository.GetByIdAsync(request.Id);
 
-        if (errors.Any())
+        if (category is null)
         {
             return new UpdateQuestionCategoryResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
+                Message = "Không tìm thấy nhóm câu hỏi."
             };
         }
 
-        var entity = await _repository.GetByIdAsync(request.Id);
-
-        if (entity == null)
+        if (!string.Equals(
+                category.Name,
+                request.Name,
+                StringComparison.OrdinalIgnoreCase))
         {
-            return new UpdateQuestionCategoryResult
+            if (await _repository.ExistsNameAsync(
+                    category.ParishId,
+                    request.Name))
             {
-                Success = false,
-                Message = "Question category not found."
-            };
+                return new UpdateQuestionCategoryResult
+                {
+                    Success = false,
+                    Message = "Tên nhóm câu hỏi đã tồn tại."
+                };
+            }
         }
 
-        var parish = await _parishRepository.GetByIdAsync(request.ParishId);
+        category.Name = request.Name;
+        category.Description = request.Description;
+        category.IsActive = request.IsActive;
 
-        if (parish == null)
-        {
-            return new UpdateQuestionCategoryResult
-            {
-                Success = false,
-                Message = "Parish not found."
-            };
-        }
-
-        entity.ParishId = request.ParishId;
-        entity.Code = request.Code.Trim();
-        entity.Name = request.Name.Trim();
-        entity.Description = request.Description;
-        entity.IsActive = request.IsActive;
-
-        await _repository.UpdateAsync(entity);
+        await _repository.UpdateAsync(category);
 
         return new UpdateQuestionCategoryResult
         {
             Success = true,
-            Message = "Question category updated successfully.",
-            Data = new UpdateQuestionCategoryResponse
-            {
-                Id = entity.Id,
-                ParishId = entity.ParishId,
-                ParishCode = parish.Code,
-                ParishName = parish.Name,
-                Code = entity.Code,
-                Name = entity.Name,
-                Description = entity.Description,
-                IsActive = entity.IsActive
-            }
+            Message = "Cập nhật nhóm câu hỏi thành công."
         };
     }
 }

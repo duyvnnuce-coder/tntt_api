@@ -1,4 +1,5 @@
 using Application.Features.StudentEnrollments.CreateStudentEnrollment;
+using Application.Features.StudentEnrollments.DeleteStudentEnrollment;
 using Application.Features.StudentEnrollments.GetStudentEnrollmentById;
 using Application.Features.StudentEnrollments.GetStudentEnrollmentList;
 using Application.Features.StudentEnrollments.UpdateStudentEnrollment;
@@ -14,67 +15,63 @@ public class StudentEnrollmentController : ControllerBase
     private readonly GetStudentEnrollmentByIdHandler _getByIdHandler;
     private readonly GetStudentEnrollmentListHandler _getListHandler;
     private readonly UpdateStudentEnrollmentHandler _updateHandler;
+    private readonly DeleteStudentEnrollmentHandler _deleteHandler;
 
     public StudentEnrollmentController(
         CreateStudentEnrollmentHandler createHandler,
         GetStudentEnrollmentByIdHandler getByIdHandler,
         GetStudentEnrollmentListHandler getListHandler,
-        UpdateStudentEnrollmentHandler updateHandler)
+        UpdateStudentEnrollmentHandler updateHandler,
+        DeleteStudentEnrollmentHandler deleteHandler)
     {
         _createHandler = createHandler;
         _getByIdHandler = getByIdHandler;
         _getListHandler = getListHandler;
         _updateHandler = updateHandler;
+        _deleteHandler = deleteHandler;
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(
         CreateStudentEnrollmentRequest request)
     {
-        var result = await _createHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
-    {
-        var result = await _getByIdHandler.Handle(
-            new GetStudentEnrollmentByIdRequest
-            {
-                Id = id
-            });
-
-        if (!result.Success)
-            return NotFound(result);
-
-        return Ok(result);
+        return Ok(await _createHandler.Handle(request));
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList(
-        [FromQuery] GetStudentEnrollmentListRequest request)
+    public async Task<IActionResult> GetList()
     {
-        var result = await _getListHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
+        return Ok(await _getListHandler.Handle(
+            new GetStudentEnrollmentListRequest()));
     }
 
-    [HttpPut]
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        return Ok(await _getByIdHandler.Handle(
+            new GetStudentEnrollmentByIdRequest
+            {
+                Id = id
+            }));
+    }
+
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
+        Guid id,
         UpdateStudentEnrollmentRequest request)
     {
-        var result = await _updateHandler.Handle(request);
+        request.Id = id;
 
-        if (!result.Success)
-            return BadRequest(result);
+        return Ok(await _updateHandler.Handle(request));
+    }
 
-        return Ok(result);
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        return Ok(await _deleteHandler.Handle(
+            new DeleteStudentEnrollmentRequest
+            {
+                Id = id
+            }));
     }
 }

@@ -6,7 +6,7 @@ public class GetExamListResponse
 
     public Guid AssignmentId { get; set; }
 
-    public string AssignmentCode { get; set; } = string.Empty;
+    public string AssignmentName { get; set; } = string.Empty;
 
     public string Code { get; set; } = string.Empty;
 

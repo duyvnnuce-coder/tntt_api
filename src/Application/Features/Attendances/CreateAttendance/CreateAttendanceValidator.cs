@@ -1,8 +1,9 @@
 namespace Application.Features.Attendances.CreateAttendance;
 
-public class CreateAttendanceValidator
+public static class CreateAttendanceValidator
 {
-    public static List<string> Validate(CreateAttendanceRequest request)
+    public static List<string> Validate(
+        CreateAttendanceRequest request)
     {
         var errors = new List<string>();
 

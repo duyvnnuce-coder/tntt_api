@@ -14,14 +14,12 @@ public class CreateCatechismClassRequest
     public Guid CatechismGradeId { get; set; }
 
     [Required]
-    [MaxLength(20)]
-    public string Code { get; set; } = string.Empty;
-
-    [Required]
-    [MaxLength(200)]
+    [MaxLength(100)]
     public string Name { get; set; } = string.Empty;
 
     public int DisplayOrder { get; set; }
 
-    public int MaxStudents { get; set; } = 50;
+    public int MaxStudents { get; set; }
+
+    public bool IsActive { get; set; } = true;
 }

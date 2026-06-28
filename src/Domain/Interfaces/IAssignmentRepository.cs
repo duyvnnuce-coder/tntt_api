@@ -12,6 +12,10 @@ public interface IAssignmentRepository
 
     Task<bool> ExistsDuplicateAsync(
         Guid semesterId,
-        Guid classId,
+        Guid catechismClassId,
         Guid teacherId);
+
+    Task<List<Assignment>> GetListAsync();
+    Task UpdateAsync(Assignment assignment);
+    Task DeleteAsync(Assignment assignment);
 }

@@ -12,5 +12,7 @@ public interface IExamRepository
 
     Task UpdateAsync(Exam entity);
 
+    Task DeleteAsync(Exam entity);
+
     Task<bool> ExistsAsync(Guid id);
 }

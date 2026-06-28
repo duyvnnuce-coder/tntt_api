@@ -45,6 +45,12 @@ public static class InfrastructureRegistration
 
         services.AddHandlers();
 
+        services.AddScoped<IAttendanceSessionRepository, AttendanceSessionRepository>();
+
+        services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+
+
+
         return services;
     }
 }

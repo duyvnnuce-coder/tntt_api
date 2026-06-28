@@ -5,48 +5,24 @@ namespace Application.Features.StudentEnrollments.UpdateStudentEnrollment;
 public class UpdateStudentEnrollmentHandler
 {
     private readonly IStudentEnrollmentRepository _repository;
-    private readonly ICatechismClassRepository _classRepository;
 
     public UpdateStudentEnrollmentHandler(
-        IStudentEnrollmentRepository repository,
-        ICatechismClassRepository classRepository)
+        IStudentEnrollmentRepository repository)
     {
         _repository = repository;
-        _classRepository = classRepository;
     }
 
     public async Task<UpdateStudentEnrollmentResult> Handle(
         UpdateStudentEnrollmentRequest request)
     {
-        var errors =
-            UpdateStudentEnrollmentValidator.Validate(request);
-
-        if (errors.Any())
-        {
-            return new UpdateStudentEnrollmentResult
-            {
-                Success = false,
-                Message = string.Join(Environment.NewLine, errors)
-            };
-        }
-
         var enrollment = await _repository.GetByIdAsync(request.Id);
 
-        if (enrollment == null)
+        if (enrollment is null)
         {
             return new UpdateStudentEnrollmentResult
             {
                 Success = false,
-                Message = "Student enrollment not found."
-            };
-        }
-
-        if (!await _classRepository.ExistsAsync(request.CatechismClassId))
-        {
-            return new UpdateStudentEnrollmentResult
-            {
-                Success = false,
-                Message = "Catechism class not found."
+                Message = "Không tìm thấy phân lớp."
             };
         }
 
@@ -61,17 +37,7 @@ public class UpdateStudentEnrollmentHandler
         return new UpdateStudentEnrollmentResult
         {
             Success = true,
-            Message = "Student enrollment updated successfully.",
-            Data = new UpdateStudentEnrollmentResponse
-            {
-                Id = enrollment.Id,
-                StudentId = enrollment.StudentId,
-                CatechismClassId = enrollment.CatechismClassId,
-                JoinDate = enrollment.JoinDate,
-                LeaveDate = enrollment.LeaveDate,
-                IsCurrent = enrollment.IsCurrent,
-                Note = enrollment.Note
-            }
+            Message = "Cập nhật phân lớp thành công."
         };
     }
 }

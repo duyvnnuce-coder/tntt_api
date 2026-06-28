@@ -15,47 +15,30 @@ public class GetStudentEnrollmentByIdHandler
     public async Task<GetStudentEnrollmentByIdResult> Handle(
         GetStudentEnrollmentByIdRequest request)
     {
-        var errors =
-            GetStudentEnrollmentByIdValidator.Validate(request);
+        var enrollment = await _repository.GetByIdAsync(request.Id);
 
-        if (errors.Any())
+        if (enrollment is null)
         {
             return new GetStudentEnrollmentByIdResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
-            };
-        }
-
-        var entity = await _repository.GetByIdAsync(request.Id);
-
-        if (entity == null)
-        {
-            return new GetStudentEnrollmentByIdResult
-            {
-                Success = false,
-                Message = "Student enrollment not found."
+                Message = "Không tìm thấy phân lớp."
             };
         }
 
         return new GetStudentEnrollmentByIdResult
         {
             Success = true,
-            Message = "Success.",
+            Message = "Thành công.",
             Data = new GetStudentEnrollmentByIdResponse
             {
-                Id = entity.Id,
-                StudentId = entity.StudentId,
-                StudentCode = entity.Student.Code,
-                ChristianName = entity.Student.ChristianName,
-                FullName = entity.Student.FullName,
-                CatechismClassId = entity.CatechismClassId,
-                CatechismClassCode = entity.CatechismClass.Code,
-                CatechismClassName = entity.CatechismClass.Name,
-                JoinDate = entity.JoinDate,
-                LeaveDate = entity.LeaveDate,
-                IsCurrent = entity.IsCurrent,
-                Note = entity.Note
+                Id = enrollment.Id,
+                StudentId = enrollment.StudentId,
+                CatechismClassId = enrollment.CatechismClassId,
+                JoinDate = enrollment.JoinDate,
+                LeaveDate = enrollment.LeaveDate,
+                IsCurrent = enrollment.IsCurrent,
+                Note = enrollment.Note
             }
         };
     }

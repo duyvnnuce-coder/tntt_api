@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
 
@@ -39,25 +40,13 @@ public class CreateAttendanceSessionHandler
             };
         }
 
-        if (await _repository.ExistsDuplicateAsync(
-            request.AssignmentId,
-            request.AttendanceDate,
-            request.LessonNumber))
-        {
-            return new CreateAttendanceSessionResult
-            {
-                Success = false,
-                Message = "Buổi học đã tồn tại."
-            };
-        }
-
         var attendanceSession = new AttendanceSession
         {
             AssignmentId = request.AssignmentId,
             AttendanceDate = request.AttendanceDate,
             LessonNumber = request.LessonNumber,
             Topic = request.Topic,
-            IsLocked = false
+            IsLocked = request.IsLocked
         };
 
         await _repository.AddAsync(attendanceSession);
@@ -65,14 +54,12 @@ public class CreateAttendanceSessionHandler
         return new CreateAttendanceSessionResult
         {
             Success = true,
-            Message = "Tạo buổi học thành công.",
+            Message = "Tạo buổi điểm danh thành công.",
             Data = new CreateAttendanceSessionResponse
             {
                 Id = attendanceSession.Id,
-                AssignmentId = attendanceSession.AssignmentId,
-                AttendanceDate = attendanceSession.AttendanceDate,
                 LessonNumber = attendanceSession.LessonNumber,
-                Topic = attendanceSession.Topic
+                AttendanceDate = attendanceSession.AttendanceDate
             }
         };
     }

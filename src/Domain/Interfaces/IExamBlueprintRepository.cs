@@ -12,5 +12,7 @@ public interface IExamBlueprintRepository
 
     Task UpdateAsync(ExamBlueprint entity);
 
+    Task DeleteAsync(ExamBlueprint entity);
+
     Task<bool> ExistsAsync(Guid id);
 }

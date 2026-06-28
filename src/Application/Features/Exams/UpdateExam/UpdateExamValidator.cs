@@ -2,26 +2,20 @@ namespace Application.Features.Exams.UpdateExam;
 
 public static class UpdateExamValidator
 {
-    public static List<string> Validate(
-        UpdateExamRequest request)
+    public static string? Validate(UpdateExamRequest request)
     {
-        var errors = new List<string>();
-
         if (request.Id == Guid.Empty)
-            errors.Add("Id is required.");
+            return "Id không hợp lệ.";
 
         if (request.AssignmentId == Guid.Empty)
-            errors.Add("AssignmentId is required.");
-
-        if (string.IsNullOrWhiteSpace(request.Code))
-            errors.Add("Code is required.");
+            return "Chưa chọn phân công.";
 
         if (string.IsNullOrWhiteSpace(request.Name))
-            errors.Add("Name is required.");
+            return "Tên kỳ thi không được để trống.";
 
         if (request.MaxScore <= 0)
-            errors.Add("MaxScore must be greater than 0.");
+            return "Điểm tối đa phải lớn hơn 0.";
 
-        return errors;
+        return null;
     }
 }

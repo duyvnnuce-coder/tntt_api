@@ -53,17 +53,11 @@ public class CreateStudentEnrollmentHandler
         }
 
         var current =
-            await _enrollmentRepository.GetCurrentByStudentIdAsync(
+            await _enrollmentRepository.ExistsCurrentAsync(
                 request.StudentId);
 
-        if (current != null)
-        {
-            return new CreateStudentEnrollmentResult
-            {
-                Success = false,
-                Message = "Student already has a current enrollment."
-            };
-        }
+
+
 
         var enrollment = new StudentEnrollment
         {

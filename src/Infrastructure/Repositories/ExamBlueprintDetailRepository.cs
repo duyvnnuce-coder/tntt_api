@@ -33,14 +33,19 @@ public class ExamBlueprintDetailRepository : IExamBlueprintDetailRepository
         return await _context.ExamBlueprintDetails
             .Include(x => x.ExamBlueprint)
             .Include(x => x.QuestionCategory)
-            .OrderBy(x => x.ExamBlueprint.Code)
-            .ThenBy(x => x.QuestionCategory.Code)
+            .OrderBy(x => x.QuestionCategory.Name)
             .ToListAsync();
     }
 
     public async Task UpdateAsync(ExamBlueprintDetail entity)
     {
         _context.ExamBlueprintDetails.Update(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(ExamBlueprintDetail entity)
+    {
+        _context.ExamBlueprintDetails.Remove(entity);
         await _context.SaveChangesAsync();
     }
 

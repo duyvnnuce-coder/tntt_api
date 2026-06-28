@@ -15,40 +15,27 @@ public class GetExamScoreByIdHandler
     public async Task<GetExamScoreByIdResult> Handle(
         GetExamScoreByIdRequest request)
     {
-        var errors =
-            GetExamScoreByIdValidator.Validate(request);
-
-        if (errors.Any())
-        {
-            return new GetExamScoreByIdResult
-            {
-                Success = false,
-                Message = string.Join(Environment.NewLine, errors)
-            };
-        }
-
         var entity = await _repository.GetByIdAsync(request.Id);
 
-        if (entity == null)
+        if (entity is null)
         {
             return new GetExamScoreByIdResult
             {
                 Success = false,
-                Message = "Exam score not found."
+                Message = "Không tìm thấy điểm thi."
             };
         }
 
         return new GetExamScoreByIdResult
         {
             Success = true,
-            Message = "Success.",
+            Message = "Lấy thông tin điểm thi thành công.",
             Data = new GetExamScoreByIdResponse
             {
                 Id = entity.Id,
                 ExamId = entity.ExamId,
-                ExamCode = entity.Exam.Code,
+                ExamName = entity.Exam.Name,
                 StudentId = entity.StudentId,
-                StudentCode = entity.Student.Code,
                 StudentName = entity.Student.FullName,
                 Score = entity.Score,
                 Note = entity.Note

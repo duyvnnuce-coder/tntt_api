@@ -5,52 +5,365 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08f2f683-e3e7-4e4d-87da-9fe9104ea02a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/UpdateCatechismGrade/UpdateCatechismGradeResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/DeleteSemester/DeleteSemesterHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/DeleteSemester/DeleteSemesterRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/DeleteSemester/DeleteSemesterResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterById/GetSemesterByIdHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterById/GetSemesterByIdRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterById/GetSemesterByIdResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterById/GetSemesterByIdResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterList/GetSemesterListHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/GetSemesterList/GetSemesterListResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/UpdateSemester/UpdateSemesterHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Features/Semesters/UpdateSemester/UpdateSemesterRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/DeleteAssignment/DeleteAssignmentResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentById/GetAssignmentByIdHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentById/GetAssignmentByIdRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentById/GetAssignmentByIdResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentById/GetAssignmentByIdResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentList/GetAssignmentListHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentList/GetAssignmentListRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/GetAssignmentList/GetAssignmentListResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/UpdateAssignment/UpdateAssignmentHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/UpdateAssignment/UpdateAssignmentRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/UpdateAssignment/UpdateAssignmentResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/DeleteAttendanceSession/DeleteAttendanceSessionHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/DeleteAttendanceSession/DeleteAttendanceSessionRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/DeleteAttendanceSession/DeleteAttendanceSessionResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionById/GetAttendanceSessionByIdHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionById/GetAttendanceSessionByIdRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionById/GetAttendanceSessionByIdResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionById/GetAttendanceSessionByIdResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionList/GetAttendanceSessionListHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionList/GetAttendanceSessionListRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/GetAttendanceSessionList/GetAttendanceSessionListResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/UpdateAttendanceSession/UpdateAttendanceSessionHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/UpdateAttendanceSession/UpdateAttendanceSessionRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/UpdateAttendanceSession/UpdateAttendanceSessionResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/DeleteAttendance/DeleteAttendanceHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/DeleteAttendance/DeleteAttendanceResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceById/GetAttendanceByIdHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceById/GetAttendanceByIdRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceById/GetAttendanceByIdResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceById/GetAttendanceByIdResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceList/GetAttendanceListHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceList/GetAttendanceListRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/GetAttendanceList/GetAttendanceListResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/UpdateAttendance/UpdateAttendanceHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/UpdateAttendance/UpdateAttendanceRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/UpdateAttendance/UpdateAttendanceResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/DeleteCatechismClass/DeleteCatechismClassHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/DeleteCatechismClass/DeleteCatechismClassRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/DeleteCatechismClass/DeleteCatechismClassResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassById/GetCatechismClassByIdHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassById/GetCatechismClassByIdRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassById/GetCatechismClassByIdResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassById/GetCatechismClassByIdResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassList/GetCatechismClassListHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassList/GetCatechismClassListRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/GetCatechismClassList/GetCatechismClassListResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/UpdateCatechismClass/UpdateCatechismClassHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/UpdateCatechismClass/UpdateCatechismClassRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/UpdateCatechismClass/UpdateCatechismClassResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/DeleteExamBlueprintDetail/DeleteExamBlueprintDetailHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/DeleteExamBlueprintDetail/DeleteExamBlueprintDetailRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/DeleteExamBlueprintDetail/DeleteExamBlueprintDetailResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprints/DeleteExamBlueprint/DeleteExamBlueprintHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprints/DeleteExamBlueprint/DeleteExamBlueprintRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprints/DeleteExamBlueprint/DeleteExamBlueprintResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/DeleteExamScore/DeleteExamScoreHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/DeleteExamScore/DeleteExamScoreRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/DeleteExamScore/DeleteExamScoreResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Exams/DeleteExam/DeleteExamHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Exams/DeleteExam/DeleteExamRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Exams/DeleteExam/DeleteExamResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/DeleteGeneratedExam/DeleteGeneratedExamHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/DeleteGeneratedExam/DeleteGeneratedExamRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/DeleteGeneratedExam/DeleteGeneratedExamResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/DeleteQuestionCategory/DeleteQuestionCategoryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/DeleteQuestionCategory/DeleteQuestionCategoryRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/DeleteQuestionCategory/DeleteQuestionCategoryResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Questions/DeleteQuestion/DeleteQuestionHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Questions/DeleteQuestion/DeleteQuestionRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/Questions/DeleteQuestion/DeleteQuestionResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/DeleteStudentEnrollment/DeleteStudentEnrollmentHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/DeleteStudentEnrollment/DeleteStudentEnrollmentRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/DeleteStudentEnrollment/DeleteStudentEnrollmentResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easycode.ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easycode/codebase-v2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/tntt_api.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/tntt_api.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/tntt_api.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/tntt_api.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Humanizer.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.CodeAnalysis.Workspaces.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Design.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.Extensions.Options.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Microsoft.OpenApi.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Mono.TextTemplating.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Npgsql.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.CodeDom.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.Composition.AttributedModel.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.Composition.Convention.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.Composition.Hosting.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.Composition.Runtime.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/System.Composition.TypedParts.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tntt_api.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/tntt_api.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/tntt_api.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.build.tntt_api.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.tntt_api.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.tntt_api.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/DeleteAssignment/DeleteAssignmentHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.csproj.Up2Date" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/DeleteAssignment/DeleteAssignmentRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.genruntimeconfig.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/tntt_api.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/tntt_api.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/tntt_api.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/tntt_api.csproj.nuget.g.targets" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Common/Enums/CodeType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Common/Enums/CodeType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/AcademicYears/CreateAcademicYear/CreateAcademicYearHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AcademicYears/CreateAcademicYear/CreateAcademicYearHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/AcademicYears/CreateAcademicYear/CreateAcademicYearRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AcademicYears/CreateAcademicYear/CreateAcademicYearRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/AcademicYears/CreateAcademicYear/CreateAcademicYearValidator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismGrades/CreateCatechismGrade/CreateCatechismGradeValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/Parishes/CreateParish/CreateParishHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Parishes/CreateParish/CreateParishHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Features/Parishes/CreateParish/CreateParishRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Parishes/CreateParish/CreateParishRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IAcademicYearRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IAcademicYearRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/ICatechismGradeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/ICatechismGradeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IParishRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IParishRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/ISemesterRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/ISemesterRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/AcademicYearRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/AcademicYearRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/CatechismGradeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/CatechismGradeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/ParishRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/ParishRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/SemesterRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/SemesterRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Assignments/CreateAssignment/CreateAssignmentValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/AttendanceSessions/CteateAttendanceSession/CreateAttendanceSessionValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Attendances/CreateAttendance/CreateAttendanceValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/CatechismClasses/CreateCatechismClass/CreateCatechismClassValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/CreateExamBlueprintDetail/CreateExamBlueprintDetailValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailById/GetExamBlueprintDetailByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailById/GetExamBlueprintDetailByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailById/GetExamBlueprintDetailByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailById/GetExamBlueprintDetailByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailById/GetExamBlueprintDetailByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/GetExamBlueprintDetailList/GetExamBlueprintDetailListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamBlueprintDetails/UpdateExamBlueprintDetail/UpdateExamBlueprintDetailValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/CreateExamScore/CreateExamScoreValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreById/GetExamScoreByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreById/GetExamScoreByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreById/GetExamScoreByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreById/GetExamScoreByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreById/GetExamScoreByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/GetExamScoreList/GetExamScoreListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/UpdateExamScore/UpdateExamScoreHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/ExamScores/UpdateExamScore/UpdateExamScoreHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/UpdateExamScore/UpdateExamScoreResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/UpdateExamScore/UpdateExamScoreResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/ExamScores/UpdateExamScore/UpdateExamScoreValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/CreateExam/CreateExamValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamById/GetExamByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamById/GetExamByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamById/GetExamByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamById/GetExamByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamById/GetExamByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/GetExamList/GetExamListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Exams/UpdateExam/UpdateExamValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/CreateGeneratedExam/CreateGeneratedExamValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamById/GetGeneratedExamByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamById/GetGeneratedExamByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamById/GetGeneratedExamByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamById/GetGeneratedExamByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamById/GetGeneratedExamByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/GetGeneratedExamList/GetGeneratedExamListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/GeneratedExams/UpdateGeneratedExam/UpdateGeneratedExamValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/CreateQuestionCategory/CreateQuestionCategoryValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryById/GetQuestionCategoryByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryById/GetQuestionCategoryByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryById/GetQuestionCategoryByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryById/GetQuestionCategoryByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryById/GetQuestionCategoryByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/GetQuestionCategoryList/GetQuestionCategoryListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/QuestionCategories/UpdateQuestionCategory/UpdateQuestionCategoryValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/CreateQuestion/CreateQuestionValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionById/GetQuestionByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionById/GetQuestionByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionById/GetQuestionByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionById/GetQuestionByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionById/GetQuestionByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/GetQuestionList/GetQuestionListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/Questions/UpdateQuestion/UpdateQuestionValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/CreateStudentEnrollment/CreateStudentEnrollmentHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/CreateStudentEnrollment/CreateStudentEnrollmentHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentById/GetStudentEnrollmentByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentById/GetStudentEnrollmentByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentById/GetStudentEnrollmentByIdValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentList/GetStudentEnrollmentListHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentList/GetStudentEnrollmentListHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentList/GetStudentEnrollmentListResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/GetStudentEnrollmentList/GetStudentEnrollmentListValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/UpdateStudentEnrollment/UpdateStudentEnrollmentHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/UpdateStudentEnrollment/UpdateStudentEnrollmentHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/UpdateStudentEnrollment/UpdateStudentEnrollmentResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/UpdateStudentEnrollment/UpdateStudentEnrollmentResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Features/StudentEnrollments/UpdateStudentEnrollment/UpdateStudentEnrollmentResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Entities/Assignment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Entities/Assignment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IAssignmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IAssignmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IAttendanceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IAttendanceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IAttendanceSessionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IAttendanceSessionRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/ICatechismClassRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/ICatechismClassRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IExamBlueprintDetailRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IExamBlueprintDetailRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IExamBlueprintRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IExamBlueprintRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IExamRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IExamRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IExamScoreRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IExamScoreRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IGeneratedExamRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IGeneratedExamRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IQuestionCategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IQuestionCategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IQuestionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IQuestionRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Interfaces/IStudentEnrollmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Interfaces/IStudentEnrollmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/DependencyInjection/RepositoryRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/DependencyInjection/RepositoryRegistration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/InfrastructureRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/InfrastructureRegistration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Configurations/AssignmentConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Configurations/AssignmentConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/AssignmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/AssignmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/AttendanceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/AttendanceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/AttendanceSessionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/AttendanceSessionRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/CatechismClassRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/CatechismClassRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamBlueprintDetailRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamBlueprintDetailRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamBlueprintRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamBlueprintRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamScoreRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/ExamScoreRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/GeneratedExamRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/GeneratedExamRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/QuestionCategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/QuestionCategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/QuestionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/QuestionRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repositories/StudentEnrollmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/StudentEnrollmentRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Services/CodeGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Services/CodeGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/AcademicYearsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/AcademicYearsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/ParishesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/ParishesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/AttendanceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/AttendanceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/AttendanceSessionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/AttendanceSessionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/CatechismClassesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/CatechismClassesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/ExamBlueprintController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/ExamBlueprintController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/ExamBlueprintDetailController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/ExamBlueprintDetailController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/ExamController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/ExamController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/ExamScoreController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/ExamScoreController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/GeneratedExamController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/GeneratedExamController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/QuestionCategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/QuestionCategoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/QuestionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/QuestionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApi/Controllers/StudentEnrollmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApi/Controllers/StudentEnrollmentController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +417,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\QuestionCategories" />
+      <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\QuestionCategories\CreateQuestionCategory" />
       <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\Semesters\GetSemesterList" />
       <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\AcademicYears\DeleteAcademicYear" />
       <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\AcademicYears\" />
-      <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\CatechismGrades\CreateCatechismGrade" />
-      <recent name="C:\Users\duynu\AndroidStudioProjects\tntt_api\src\Application\Features\AttendanceSessions\CteateAttendanceSessions" />
     </key>
   </component>
   <component name="TaskManager">

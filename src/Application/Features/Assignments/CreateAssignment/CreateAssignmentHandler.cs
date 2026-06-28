@@ -5,27 +5,16 @@ namespace Application.Features.Assignments.CreateAssignment;
 
 public class CreateAssignmentHandler
 {
-    private readonly IAssignmentRepository _assignmentRepository;
-    private readonly ISemesterRepository _semesterRepository;
-    private readonly ICatechismClassRepository _classRepository;
-    private readonly ITeacherRepository _teacherRepository;
-    private readonly IAssistantRepository _assistantRepository;
+    private readonly IAssignmentRepository _repository;
 
     public CreateAssignmentHandler(
-        IAssignmentRepository assignmentRepository,
-        ISemesterRepository semesterRepository,
-        ICatechismClassRepository classRepository,
-        ITeacherRepository teacherRepository,
-        IAssistantRepository assistantRepository)
+        IAssignmentRepository repository)
     {
-        _assignmentRepository = assignmentRepository;
-        _semesterRepository = semesterRepository;
-        _classRepository = classRepository;
-        _teacherRepository = teacherRepository;
-        _assistantRepository = assistantRepository;
+        _repository = repository;
     }
 
-    public async Task<CreateAssignmentResult> Handle(CreateAssignmentRequest request)
+    public async Task<CreateAssignmentResult> Handle(
+        CreateAssignmentRequest request)
     {
         var errors = CreateAssignmentValidator.Validate(request);
 
@@ -38,49 +27,7 @@ public class CreateAssignmentHandler
             };
         }
 
-        if (!await _semesterRepository.ExistsAsync(request.SemesterId))
-            return new CreateAssignmentResult
-            {
-                Success = false,
-                Message = "Học kỳ không tồn tại."
-            };
-
-        if (!await _classRepository.ExistsAsync(request.CatechismClassId))
-            return new CreateAssignmentResult
-            {
-                Success = false,
-                Message = "Lớp không tồn tại."
-            };
-
-        if (!await _teacherRepository.ExistsAsync(request.TeacherId))
-            return new CreateAssignmentResult
-            {
-                Success = false,
-                Message = "Giáo lý viên không tồn tại."
-            };
-
-        if (request.AssistantId.HasValue &&
-            !await _assistantRepository.ExistsAsync(request.AssistantId.Value))
-            return new CreateAssignmentResult
-            {
-                Success = false,
-                Message = "Trợ giảng không tồn tại."
-            };
-
-        var assignment = new Assignment
-        {
-            SemesterId = request.SemesterId,
-            ClassId = request.CatechismClassId,
-            TeacherId = request.TeacherId,
-            AssistantId = request.AssistantId,
-            IsMainTeacher = request.IsMainTeacher,
-
-            StartDate = request.StartDate,
-            EndDate = request.EndDate,
-            Note = request.Note
-        };
-
-        if (await _assignmentRepository.ExistsDuplicateAsync(
+        if (await _repository.ExistsDuplicateAsync(
             request.SemesterId,
             request.CatechismClassId,
             request.TeacherId))
@@ -88,23 +35,35 @@ public class CreateAssignmentHandler
             return new CreateAssignmentResult
             {
                 Success = false,
-                Message = "Giáo lý viên đã được phân công cho lớp này."
+                Message = "Giáo viên đã được phân công cho lớp này trong học kỳ."
             };
         }
 
-        await _assignmentRepository.AddAsync(assignment);
+        var assignment = new Assignment
+        {
+            TeacherId = request.TeacherId,
+            AssistantId = request.AssistantId,
+            CatechismClassId = request.CatechismClassId,
+            SemesterId = request.SemesterId,
+            IsMainTeacher = request.IsMainTeacher,
+            StartDate = request.StartDate,
+            EndDate = request.EndDate,
+            Note = request.Note
+        };
+
+        await _repository.AddAsync(assignment);
 
         return new CreateAssignmentResult
         {
             Success = true,
-            Message = "Phân công thành công.",
+            Message = "Tạo phân công thành công.",
             Data = new CreateAssignmentResponse
             {
                 Id = assignment.Id,
-                SemesterId = assignment.SemesterId,
-                CatechismClassId = assignment.ClassId,
                 TeacherId = assignment.TeacherId,
-                AssistantId = assignment.AssistantId
+                AssistantId = assignment.AssistantId,
+                CatechismClassId = assignment.CatechismClassId,
+                SemesterId = assignment.SemesterId
             }
         };
     }

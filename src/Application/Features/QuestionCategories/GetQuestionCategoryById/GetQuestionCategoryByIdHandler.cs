@@ -15,43 +15,29 @@ public class GetQuestionCategoryByIdHandler
     public async Task<GetQuestionCategoryByIdResult> Handle(
         GetQuestionCategoryByIdRequest request)
     {
-        var errors =
-            GetQuestionCategoryByIdValidator.Validate(request);
+        var category = await _repository.GetByIdAsync(request.Id);
 
-        if (errors.Any())
+        if (category is null)
         {
             return new GetQuestionCategoryByIdResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
-            };
-        }
-
-        var entity = await _repository.GetByIdAsync(request.Id);
-
-        if (entity == null)
-        {
-            return new GetQuestionCategoryByIdResult
-            {
-                Success = false,
-                Message = "Question category not found."
+                Message = "Không tìm thấy nhóm câu hỏi."
             };
         }
 
         return new GetQuestionCategoryByIdResult
         {
             Success = true,
-            Message = "Success.",
+            Message = "Lấy thông tin thành công.",
             Data = new GetQuestionCategoryByIdResponse
             {
-                Id = entity.Id,
-                ParishId = entity.ParishId,
-                ParishCode = entity.Parish.Code,
-                ParishName = entity.Parish.Name,
-                Code = entity.Code,
-                Name = entity.Name,
-                Description = entity.Description,
-                IsActive = entity.IsActive
+                Id = category.Id,
+                ParishId = category.ParishId,
+                Code = category.Code,
+                Name = category.Name,
+                Description = category.Description,
+                IsActive = category.IsActive
             }
         };
     }

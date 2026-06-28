@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tntt_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4178cf284fc0c383025db8dfbb31b3e6ab8565d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3037fc16489965430e6fb753107aaccf30df4bf4")]
 [assembly: System.Reflection.AssemblyProductAttribute("tntt_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tntt_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

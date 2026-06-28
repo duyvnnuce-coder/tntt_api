@@ -1,4 +1,5 @@
 using Application.Features.ExamScores.CreateExamScore;
+using Application.Features.ExamScores.DeleteExamScore;
 using Application.Features.ExamScores.GetExamScoreById;
 using Application.Features.ExamScores.GetExamScoreList;
 using Application.Features.ExamScores.UpdateExamScore;
@@ -10,70 +11,50 @@ namespace WebApi.Controllers;
 [Route("api/exam-scores")]
 public class ExamScoreController : ControllerBase
 {
-    private readonly CreateExamScoreHandler _createHandler;
-    private readonly GetExamScoreByIdHandler _getByIdHandler;
-    private readonly GetExamScoreListHandler _getListHandler;
-    private readonly UpdateExamScoreHandler _updateHandler;
-
-    public ExamScoreController(
-        CreateExamScoreHandler createHandler,
-        GetExamScoreByIdHandler getByIdHandler,
-        GetExamScoreListHandler getListHandler,
-        UpdateExamScoreHandler updateHandler)
-    {
-        _createHandler = createHandler;
-        _getByIdHandler = getByIdHandler;
-        _getListHandler = getListHandler;
-        _updateHandler = updateHandler;
-    }
-
     [HttpPost]
-    public async Task<IActionResult> Create(CreateExamScoreRequest request)
+    public async Task<IActionResult> Create(
+        [FromServices] CreateExamScoreHandler handler,
+        CreateExamScoreRequest request)
     {
-        var result = await _createHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
-    {
-        var result = await _getByIdHandler.Handle(
-            new GetExamScoreByIdRequest
-            {
-                Id = id
-            });
-
-        if (!result.Success)
-            return NotFound(result);
-
-        return Ok(result);
+        return Ok(await handler.Handle(request));
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList(
-        [FromQuery] GetExamScoreListRequest request)
+        [FromServices] GetExamScoreListHandler handler)
     {
-        var result = await _getListHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
+        return Ok(await handler.Handle(new GetExamScoreListRequest()));
     }
 
-    [HttpPut]
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(
+        [FromServices] GetExamScoreByIdHandler handler,
+        Guid id)
+    {
+        return Ok(await handler.Handle(new GetExamScoreByIdRequest
+        {
+            Id = id
+        }));
+    }
+
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
+        [FromServices] UpdateExamScoreHandler handler,
+        Guid id,
         UpdateExamScoreRequest request)
     {
-        var result = await _updateHandler.Handle(request);
+        request.Id = id;
+        return Ok(await handler.Handle(request));
+    }
 
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(
+        [FromServices] DeleteExamScoreHandler handler,
+        Guid id)
+    {
+        return Ok(await handler.Handle(new DeleteExamScoreRequest
+        {
+            Id = id
+        }));
     }
 }

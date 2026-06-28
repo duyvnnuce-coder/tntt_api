@@ -14,5 +14,6 @@ public class CreateAttendanceRequest
 
     public bool IsExcused { get; set; }
 
+    [MaxLength(300)]
     public string? Note { get; set; }
 }

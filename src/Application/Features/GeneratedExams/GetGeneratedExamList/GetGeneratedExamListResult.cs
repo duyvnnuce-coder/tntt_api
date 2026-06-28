@@ -6,5 +6,5 @@ public class GetGeneratedExamListResult
 
     public string Message { get; set; } = string.Empty;
 
-    public List<GetGeneratedExamListResponse> Data { get; set; } = new();
+    public List<GetGeneratedExamListResponse> Data { get; set; } = [];
 }

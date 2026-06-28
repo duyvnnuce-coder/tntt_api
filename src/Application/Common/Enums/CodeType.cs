@@ -13,5 +13,6 @@ public enum CodeType
     Question,
     Exam,
     ExamBlueprint,
-    GeneratedExam
+    GeneratedExam,
+
 }

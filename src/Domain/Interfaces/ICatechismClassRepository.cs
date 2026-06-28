@@ -4,9 +4,15 @@ namespace Domain.Interfaces;
 
 public interface ICatechismClassRepository
 {
+    Task AddAsync(CatechismClass catechismClass);
+
+    Task<List<CatechismClass>> GetListAsync();
+
     Task<CatechismClass?> GetByIdAsync(Guid id);
 
     Task<bool> ExistsAsync(Guid id);
 
-    Task AddAsync(CatechismClass catechismClass);
+    Task UpdateAsync(CatechismClass catechismClass);
+
+    Task DeleteAsync(CatechismClass catechismClass);
 }

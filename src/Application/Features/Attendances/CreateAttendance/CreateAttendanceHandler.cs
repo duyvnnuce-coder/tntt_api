@@ -5,21 +5,22 @@ namespace Application.Features.Attendances.CreateAttendance;
 
 public class CreateAttendanceHandler
 {
-    private readonly IAttendanceRepository _attendanceRepository;
-    private readonly IAttendanceSessionRepository _sessionRepository;
+    private readonly IAttendanceRepository _repository;
+    private readonly IAttendanceSessionRepository _attendanceSessionRepository;
     private readonly IStudentRepository _studentRepository;
 
     public CreateAttendanceHandler(
-        IAttendanceRepository attendanceRepository,
-        IAttendanceSessionRepository sessionRepository,
+        IAttendanceRepository repository,
+        IAttendanceSessionRepository attendanceSessionRepository,
         IStudentRepository studentRepository)
     {
-        _attendanceRepository = attendanceRepository;
-        _sessionRepository = sessionRepository;
+        _repository = repository;
+        _attendanceSessionRepository = attendanceSessionRepository;
         _studentRepository = studentRepository;
     }
 
-    public async Task<CreateAttendanceResult> Handle(CreateAttendanceRequest request)
+    public async Task<CreateAttendanceResult> Handle(
+        CreateAttendanceRequest request)
     {
         var errors = CreateAttendanceValidator.Validate(request);
 
@@ -32,12 +33,12 @@ public class CreateAttendanceHandler
             };
         }
 
-        if (!await _sessionRepository.ExistsAsync(request.AttendanceSessionId))
+        if (!await _attendanceSessionRepository.ExistsAsync(request.AttendanceSessionId))
         {
             return new CreateAttendanceResult
             {
                 Success = false,
-                Message = "Buổi học không tồn tại."
+                Message = "Buổi điểm danh không tồn tại."
             };
         }
 
@@ -46,22 +47,11 @@ public class CreateAttendanceHandler
             return new CreateAttendanceResult
             {
                 Success = false,
-                Message = "Học sinh không tồn tại."
+                Message = "Thiếu nhi không tồn tại."
             };
         }
 
-        if (await _attendanceRepository.ExistsAsync(
-                request.AttendanceSessionId,
-                request.StudentId))
-        {
-            return new CreateAttendanceResult
-            {
-                Success = false,
-                Message = "Học sinh đã được điểm danh."
-            };
-        }
-
-        var attendance = new Domain.Entities.Attendance
+        var attendance = new Attendance
         {
             AttendanceSessionId = request.AttendanceSessionId,
             StudentId = request.StudentId,
@@ -70,7 +60,7 @@ public class CreateAttendanceHandler
             Note = request.Note
         };
 
-        await _attendanceRepository.AddAsync(attendance);
+        await _repository.AddAsync(attendance);
 
         return new CreateAttendanceResult
         {
@@ -79,10 +69,8 @@ public class CreateAttendanceHandler
             Data = new CreateAttendanceResponse
             {
                 Id = attendance.Id,
-                AttendanceSessionId = attendance.AttendanceSessionId,
                 StudentId = attendance.StudentId,
-                IsPresent = attendance.IsPresent,
-                IsExcused = attendance.IsExcused
+                AttendanceSessionId = attendance.AttendanceSessionId
             }
         };
     }

@@ -2,7 +2,8 @@ namespace Application.Features.CatechismClasses.CreateCatechismClass;
 
 public static class CreateCatechismClassValidator
 {
-    public static List<string> Validate(CreateCatechismClassRequest request)
+    public static List<string> Validate(
+        CreateCatechismClassRequest request)
     {
         var errors = new List<string>();
 
@@ -15,14 +16,8 @@ public static class CreateCatechismClassValidator
         if (request.CatechismGradeId == Guid.Empty)
             errors.Add("CatechismGradeId is required.");
 
-        if (string.IsNullOrWhiteSpace(request.Code))
-            errors.Add("Code is required.");
-
         if (string.IsNullOrWhiteSpace(request.Name))
             errors.Add("Name is required.");
-
-        if (request.MaxStudents <= 0)
-            errors.Add("MaxStudents must be greater than 0.");
 
         return errors;
     }

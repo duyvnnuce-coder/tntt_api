@@ -14,30 +14,34 @@ public class QuestionCategoryRepository : IQuestionCategoryRepository
         _context = context;
     }
 
-    public async Task AddAsync(QuestionCategory entity)
+    public async Task AddAsync(QuestionCategory category)
     {
-        await _context.QuestionCategories.AddAsync(entity);
+        await _context.QuestionCategories.AddAsync(category);
         await _context.SaveChangesAsync();
     }
 
     public async Task<QuestionCategory?> GetByIdAsync(Guid id)
     {
         return await _context.QuestionCategories
-            .Include(x => x.Parish)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<List<QuestionCategory>> GetListAsync()
     {
         return await _context.QuestionCategories
-            .Include(x => x.Parish)
-            .OrderBy(x => x.Code)
+            .OrderBy(x => x.Name)
             .ToListAsync();
     }
 
-    public async Task UpdateAsync(QuestionCategory entity)
+    public async Task UpdateAsync(QuestionCategory category)
     {
-        _context.QuestionCategories.Update(entity);
+        _context.QuestionCategories.Update(category);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(QuestionCategory category)
+    {
+        _context.QuestionCategories.Remove(category);
         await _context.SaveChangesAsync();
     }
 
@@ -45,5 +49,21 @@ public class QuestionCategoryRepository : IQuestionCategoryRepository
     {
         return await _context.QuestionCategories
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> ExistsCodeAsync(Guid parishId, string code)
+    {
+        return await _context.QuestionCategories
+            .AnyAsync(x =>
+                x.ParishId == parishId &&
+                x.Code == code);
+    }
+
+    public async Task<bool> ExistsNameAsync(Guid parishId, string name)
+    {
+        return await _context.QuestionCategories
+            .AnyAsync(x =>
+                x.ParishId == parishId &&
+                x.Name == name);
     }
 }

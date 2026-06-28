@@ -18,46 +18,41 @@ public class UpdateGeneratedExamHandler
     public async Task<UpdateGeneratedExamResult> Handle(
         UpdateGeneratedExamRequest request)
     {
-        var errors =
-            UpdateGeneratedExamValidator.Validate(request);
+        var validation = UpdateGeneratedExamValidator.Validate(request);
 
-        if (errors.Any())
+        if (validation is not null)
         {
             return new UpdateGeneratedExamResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
+                Message = validation
             };
         }
 
         var entity = await _repository.GetByIdAsync(request.Id);
 
-        if (entity == null)
+        if (entity is null)
         {
             return new UpdateGeneratedExamResult
             {
                 Success = false,
-                Message = "Generated exam not found."
+                Message = "Không tìm thấy đề thi."
             };
         }
 
-        var blueprint =
-            await _examBlueprintRepository.GetByIdAsync(
-                request.ExamBlueprintId);
+        var blueprint = await _examBlueprintRepository.GetByIdAsync(request.ExamBlueprintId);
 
-        if (blueprint == null)
+        if (blueprint is null)
         {
             return new UpdateGeneratedExamResult
             {
                 Success = false,
-                Message = "Exam blueprint not found."
+                Message = "Không tìm thấy đề mẫu."
             };
         }
 
         entity.ExamBlueprintId = request.ExamBlueprintId;
-        entity.Code = request.Code.Trim();
-        entity.Name = request.Name.Trim();
-        entity.GeneratedAt = request.GeneratedAt;
+        entity.Name = request.Name;
         entity.IsPublished = request.IsPublished;
 
         await _repository.UpdateAsync(entity);
@@ -65,12 +60,12 @@ public class UpdateGeneratedExamHandler
         return new UpdateGeneratedExamResult
         {
             Success = true,
-            Message = "Generated exam updated successfully.",
+            Message = "Cập nhật đề thi thành công.",
             Data = new UpdateGeneratedExamResponse
             {
                 Id = entity.Id,
                 ExamBlueprintId = entity.ExamBlueprintId,
-                ExamBlueprintCode = blueprint.Code,
+                ExamBlueprintName = blueprint.Name,
                 Code = entity.Code,
                 Name = entity.Name,
                 GeneratedAt = entity.GeneratedAt,

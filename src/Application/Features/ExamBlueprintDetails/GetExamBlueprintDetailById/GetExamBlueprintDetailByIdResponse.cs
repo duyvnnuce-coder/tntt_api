@@ -6,13 +6,9 @@ public class GetExamBlueprintDetailByIdResponse
 
     public Guid ExamBlueprintId { get; set; }
 
-    public string ExamBlueprintCode { get; set; } = string.Empty;
-
     public string ExamBlueprintName { get; set; } = string.Empty;
 
     public Guid QuestionCategoryId { get; set; }
-
-    public string QuestionCategoryCode { get; set; } = string.Empty;
 
     public string QuestionCategoryName { get; set; } = string.Empty;
 

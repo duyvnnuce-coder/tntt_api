@@ -12,7 +12,11 @@ public interface IStudentEnrollmentRepository
 
     Task<StudentEnrollment?> GetCurrentByStudentIdAsync(Guid studentId);
 
-    Task UpdateAsync(StudentEnrollment enrollment);
+    Task<bool> ExistsCurrentAsync(Guid studentId);
 
     Task<bool> ExistsAsync(Guid id);
+
+    Task UpdateAsync(StudentEnrollment enrollment);
+
+    Task DeleteAsync(StudentEnrollment enrollment);
 }

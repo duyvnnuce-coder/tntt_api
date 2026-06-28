@@ -22,7 +22,7 @@ public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
         builder.HasIndex(x => new
         {
             x.SemesterId,
-            x.ClassId,
+            x.CatechismClass,
             x.TeacherId
         });
 
@@ -36,9 +36,9 @@ public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
             .HasForeignKey(x => x.AssistantId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(x => x.Class)
+        builder.HasOne(x => x.CatechismClass)
             .WithMany(x => x.Assignments)
-            .HasForeignKey(x => x.ClassId)
+            .HasForeignKey(x => x.CatechismClassId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.Semester)

@@ -14,9 +14,9 @@ public class QuestionRepository : IQuestionRepository
         _context = context;
     }
 
-    public async Task AddAsync(Question entity)
+    public async Task AddAsync(Question question)
     {
-        await _context.Questions.AddAsync(entity);
+        await _context.Questions.AddAsync(question);
         await _context.SaveChangesAsync();
     }
 
@@ -24,7 +24,6 @@ public class QuestionRepository : IQuestionRepository
     {
         return await _context.Questions
             .Include(x => x.QuestionCategory)
-            .Include(x => x.CatechismGrade)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -32,14 +31,19 @@ public class QuestionRepository : IQuestionRepository
     {
         return await _context.Questions
             .Include(x => x.QuestionCategory)
-            .Include(x => x.CatechismGrade)
             .OrderBy(x => x.Code)
             .ToListAsync();
     }
 
-    public async Task UpdateAsync(Question entity)
+    public async Task UpdateAsync(Question question)
     {
-        _context.Questions.Update(entity);
+        _context.Questions.Update(question);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Question question)
+    {
+        _context.Questions.Remove(question);
         await _context.SaveChangesAsync();
     }
 
@@ -47,5 +51,11 @@ public class QuestionRepository : IQuestionRepository
     {
         return await _context.Questions
             .AnyAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> ExistsCodeAsync(string code)
+    {
+        return await _context.Questions
+            .AnyAsync(x => x.Code == code);
     }
 }

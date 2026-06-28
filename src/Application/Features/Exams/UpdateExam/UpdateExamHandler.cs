@@ -5,77 +5,43 @@ namespace Application.Features.Exams.UpdateExam;
 public class UpdateExamHandler
 {
     private readonly IExamRepository _repository;
-    private readonly IAssignmentRepository _assignmentRepository;
 
     public UpdateExamHandler(
-        IExamRepository repository,
-        IAssignmentRepository assignmentRepository)
+        IExamRepository repository)
     {
         _repository = repository;
-        _assignmentRepository = assignmentRepository;
     }
 
     public async Task<UpdateExamResult> Handle(
         UpdateExamRequest request)
     {
-        var errors = UpdateExamValidator.Validate(request);
+        var exam = await _repository.GetByIdAsync(request.Id);
 
-        if (errors.Any())
+        if (exam is null)
         {
             return new UpdateExamResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
+                Message = "Không tìm thấy kỳ thi."
             };
         }
 
-        var entity = await _repository.GetByIdAsync(request.Id);
+        exam.AssignmentId = request.AssignmentId;
+        exam.Name = request.Name;
+        exam.ExamDate = request.ExamDate;
+        exam.MaxScore = request.MaxScore;
+        exam.IsPublished = request.IsPublished;
 
-        if (entity == null)
-        {
-            return new UpdateExamResult
-            {
-                Success = false,
-                Message = "Exam not found."
-            };
-        }
-
-        var assignment =
-            await _assignmentRepository.GetByIdAsync(
-                request.AssignmentId);
-
-        if (assignment == null)
-        {
-            return new UpdateExamResult
-            {
-                Success = false,
-                Message = "Assignment not found."
-            };
-        }
-
-        entity.AssignmentId = request.AssignmentId;
-        entity.Code = request.Code.Trim();
-        entity.Name = request.Name.Trim();
-        entity.ExamDate = request.ExamDate;
-        entity.MaxScore = request.MaxScore;
-        entity.IsPublished = request.IsPublished;
-
-        await _repository.UpdateAsync(entity);
+        await _repository.UpdateAsync(exam);
 
         return new UpdateExamResult
         {
             Success = true,
-            Message = "Exam updated successfully.",
+            Message = "Cập nhật kỳ thi thành công.",
             Data = new UpdateExamResponse
             {
-                Id = entity.Id,
-                AssignmentId = entity.AssignmentId,
-                AssignmentCode = assignment.Class.Code,
-                Code = entity.Code,
-                Name = entity.Name,
-                ExamDate = entity.ExamDate,
-                MaxScore = entity.MaxScore,
-                IsPublished = entity.IsPublished
+                Id = exam.Id,
+                Code = exam.Code
             }
         };
     }

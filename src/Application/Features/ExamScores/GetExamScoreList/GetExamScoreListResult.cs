@@ -6,5 +6,5 @@ public class GetExamScoreListResult
 
     public string Message { get; set; } = string.Empty;
 
-    public List<GetExamScoreListResponse> Data { get; set; } = new();
+    public List<GetExamScoreListResponse> Data { get; set; } = [];
 }

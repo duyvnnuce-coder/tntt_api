@@ -36,10 +36,7 @@ using Application.Features.QuestionCategories.CreateQuestionCategory;
 using Application.Features.QuestionCategories.GetQuestionCategoryById;
 using Application.Features.QuestionCategories.GetQuestionCategoryList;
 using Application.Features.QuestionCategories.UpdateQuestionCategory;
-using Application.Features.Questions.CreateQuestion;
-using Application.Features.Questions.GetQuestionById;
-using Application.Features.Questions.GetQuestionList;
-using Application.Features.Questions.UpdateQuestion;
+
 using Application.Features.ExamBlueprints.CreateExamBlueprint;
 using Application.Features.ExamBlueprints.GetExamBlueprintById;
 using Application.Features.ExamBlueprints.GetExamBlueprintList;
@@ -82,11 +79,41 @@ using Application.Features.Semesters.GetSemesterList;
 using Application.Features.Semesters.GetSemesterById;
 using Application.Features.Semesters.UpdateSemester;
 using Application.Features.Semesters.DeleteSemester;
-
+using Application.Features.ExamBlueprints.DeleteExamBlueprint;
 using Application.Features.CatechismGrades.GetCatechismGradeList;
 using Application.Features.CatechismGrades.GetCatechismGradeById;
 using Application.Features.CatechismGrades.UpdateCatechismGrade;
 using Application.Features.CatechismGrades.DeleteCatechismGrade;
+using Application.Features.CatechismClasses.GetCatechismClassList;
+using Application.Features.CatechismClasses.GetCatechismClassById;
+using Application.Features.CatechismClasses.UpdateCatechismClass;
+using Application.Features.CatechismClasses.DeleteCatechismClass;
+using Application.Features.AttendanceSessions.GetAttendanceSessionList;
+using Application.Features.AttendanceSessions.GetAttendanceSessionById;
+using Application.Features.AttendanceSessions.UpdateAttendanceSession;
+using Application.Features.AttendanceSessions.DeleteAttendanceSession;
+using Application.Features.Attendances.GetAttendanceList;
+using Application.Features.Attendances.GetAttendanceById;
+using Application.Features.Attendances.UpdateAttendance;
+using Application.Features.Attendances.DeleteAttendance;
+using Application.Features.StudentEnrollments.DeleteStudentEnrollment;
+using Application.Features.Questions.CreateQuestion;
+using Application.Features.Questions.GetQuestionList;
+using Application.Features.Questions.GetQuestionById;
+using Application.Features.Questions.UpdateQuestion;
+using Application.Features.Questions.DeleteQuestion;
+using Application.Features.QuestionCategories.DeleteQuestionCategory;
+using Application.Features.ExamBlueprintDetails.DeleteExamBlueprintDetail;
+using Application.Features.Exams.DeleteExam;
+using Application.Features.GeneratedExams.DeleteGeneratedExam;
+using Application.Features.ExamScores.DeleteExamScore;
+
+
+
+
+
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -100,7 +127,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IApplicationDbContext>(sp =>
     sp.GetRequiredService<AppDbContext>());
 
-
+builder.Services.AddScoped<DeleteExamBlueprintDetailHandler>();
 // Repository
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -115,6 +142,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //get
+builder.Services.AddScoped<DeleteExamHandler>();
+
 builder.Services.AddScoped<GetSacramentListHandler>();
 builder.Services.AddScoped<GetStudentListHandler>();
 builder.Services.AddScoped<UpdateStudentHandler>();
@@ -136,16 +165,16 @@ builder.Services.AddScoped<UpdateAcademicYearHandler>();
 builder.Services.AddScoped<DeleteAcademicYearHandler>();
 builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
 builder.Services.AddScoped<ICatechismGradeRepository, CatechismGradeRepository>();
-
-
+builder.Services.AddScoped<UpdateExamBlueprintHandler>();
+builder.Services.AddScoped<DeleteExamBlueprintHandler>();
 
 
 
 
 builder.Services.AddScoped<CreateCatechismGradeHandler>();
-
+builder.Services.AddScoped<DeleteStudentEnrollmentHandler>();
 builder.Services.AddScoped<GetCatechismGradeListHandler>();
-
+builder.Services.AddScoped<DeleteStudentEnrollmentHandler>();
 builder.Services.AddScoped<GetCatechismGradeByIdHandler>();
 
 builder.Services.AddScoped<UpdateCatechismGradeHandler>();
@@ -155,9 +184,51 @@ builder.Services.AddScoped<GetSemesterListHandler>();
 builder.Services.AddScoped<GetSemesterByIdHandler>();
 builder.Services.AddScoped<UpdateSemesterHandler>();
 builder.Services.AddScoped<DeleteSemesterHandler>();
+builder.Services.AddScoped<CreateCatechismClassHandler>();
 
+builder.Services.AddScoped<GetCatechismClassListHandler>();
 
+builder.Services.AddScoped<GetCatechismClassByIdHandler>();
 
+builder.Services.AddScoped<UpdateCatechismClassHandler>();
+
+builder.Services.AddScoped<DeleteCatechismClassHandler>();
+builder.Services.AddScoped<CreateAttendanceSessionHandler>();
+
+builder.Services.AddScoped<GetAttendanceSessionListHandler>();
+
+builder.Services.AddScoped<GetAttendanceSessionByIdHandler>();
+
+builder.Services.AddScoped<UpdateAttendanceSessionHandler>();
+
+builder.Services.AddScoped<DeleteAttendanceSessionHandler>();
+builder.Services.AddScoped<CreateAttendanceHandler>();
+
+builder.Services.AddScoped<GetAttendanceListHandler>();
+
+builder.Services.AddScoped<GetAttendanceByIdHandler>();
+
+builder.Services.AddScoped<UpdateAttendanceHandler>();
+
+builder.Services.AddScoped<DeleteAttendanceHandler>();
+builder.Services.AddScoped<CreateQuestionCategoryHandler>();
+
+builder.Services.AddScoped<GetQuestionCategoryListHandler>();
+
+builder.Services.AddScoped<GetQuestionCategoryByIdHandler>();
+
+builder.Services.AddScoped<UpdateQuestionCategoryHandler>();
+
+builder.Services.AddScoped<DeleteQuestionCategoryHandler>();
+builder.Services.AddScoped<CreateQuestionHandler>();
+
+builder.Services.AddScoped<GetQuestionListHandler>();
+
+builder.Services.AddScoped<GetQuestionByIdHandler>();
+
+builder.Services.AddScoped<UpdateQuestionHandler>();
+
+builder.Services.AddScoped<DeleteQuestionHandler>();
 
 
 

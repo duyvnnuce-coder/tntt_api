@@ -6,5 +6,5 @@ public class GetExamBlueprintDetailListResult
 
     public string Message { get; set; } = string.Empty;
 
-    public List<GetExamBlueprintDetailListResponse> Data { get; set; } = new();
+    public List<GetExamBlueprintDetailListResponse> Data { get; set; } = [];
 }

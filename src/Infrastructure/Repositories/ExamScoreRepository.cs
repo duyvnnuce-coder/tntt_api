@@ -33,13 +33,19 @@ public class ExamScoreRepository : IExamScoreRepository
         return await _context.ExamScores
             .Include(x => x.Exam)
             .Include(x => x.Student)
-            .OrderByDescending(x => x.CreatedAt)
+            .OrderByDescending(x => x.Score)
             .ToListAsync();
     }
 
     public async Task UpdateAsync(ExamScore entity)
     {
         _context.ExamScores.Update(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(ExamScore entity)
+    {
+        _context.ExamScores.Remove(entity);
         await _context.SaveChangesAsync();
     }
 

@@ -2,23 +2,17 @@ namespace Application.Features.Exams.CreateExam;
 
 public static class CreateExamValidator
 {
-    public static List<string> Validate(
-        CreateExamRequest request)
+    public static string? Validate(CreateExamRequest request)
     {
-        var errors = new List<string>();
-
         if (request.AssignmentId == Guid.Empty)
-            errors.Add("AssignmentId is required.");
-
-        if (string.IsNullOrWhiteSpace(request.Code))
-            errors.Add("Code is required.");
+            return "Assignment không hợp lệ.";
 
         if (string.IsNullOrWhiteSpace(request.Name))
-            errors.Add("Name is required.");
+            return "Tên kỳ thi không được để trống.";
 
         if (request.MaxScore <= 0)
-            errors.Add("MaxScore must be greater than 0.");
+            return "Điểm tối đa phải lớn hơn 0.";
 
-        return errors;
+        return null;
     }
 }

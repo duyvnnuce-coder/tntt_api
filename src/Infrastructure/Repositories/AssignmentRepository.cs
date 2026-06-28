@@ -34,12 +34,31 @@ public class AssignmentRepository : IAssignmentRepository
 
     public async Task<bool> ExistsDuplicateAsync(
         Guid semesterId,
-        Guid classId,
+        Guid catechismClassId,
         Guid teacherId)
     {
         return await _context.Assignments.AnyAsync(x =>
             x.SemesterId == semesterId &&
-            x.ClassId == classId &&
+            x.CatechismClassId == catechismClassId &&
             x.TeacherId == teacherId);
+    }
+
+    public async Task<List<Assignment>> GetListAsync()
+    {
+        return await _context.Assignments
+            .OrderBy(x => x.StartDate)
+            .ToListAsync();
+    }
+
+    public async Task UpdateAsync(Assignment assignment)
+    {
+        _context.Assignments.Update(assignment);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Assignment assignment)
+    {
+        _context.Assignments.Remove(assignment);
+        await _context.SaveChangesAsync();
     }
 }

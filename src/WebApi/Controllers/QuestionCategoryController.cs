@@ -1,4 +1,5 @@
 using Application.Features.QuestionCategories.CreateQuestionCategory;
+using Application.Features.QuestionCategories.DeleteQuestionCategory;
 using Application.Features.QuestionCategories.GetQuestionCategoryById;
 using Application.Features.QuestionCategories.GetQuestionCategoryList;
 using Application.Features.QuestionCategories.UpdateQuestionCategory;
@@ -8,72 +9,69 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/question-categories")]
-public class QuestionCategoryController : ControllerBase
+public class QuestionCategoriesController : ControllerBase
 {
     private readonly CreateQuestionCategoryHandler _createHandler;
-    private readonly GetQuestionCategoryByIdHandler _getByIdHandler;
-    private readonly GetQuestionCategoryListHandler _getListHandler;
+    private readonly GetQuestionCategoryListHandler _listHandler;
+    private readonly GetQuestionCategoryByIdHandler _byIdHandler;
     private readonly UpdateQuestionCategoryHandler _updateHandler;
+    private readonly DeleteQuestionCategoryHandler _deleteHandler;
 
-    public QuestionCategoryController(
+    public QuestionCategoriesController(
         CreateQuestionCategoryHandler createHandler,
-        GetQuestionCategoryByIdHandler getByIdHandler,
-        GetQuestionCategoryListHandler getListHandler,
-        UpdateQuestionCategoryHandler updateHandler)
+        GetQuestionCategoryListHandler listHandler,
+        GetQuestionCategoryByIdHandler byIdHandler,
+        UpdateQuestionCategoryHandler updateHandler,
+        DeleteQuestionCategoryHandler deleteHandler)
     {
         _createHandler = createHandler;
-        _getByIdHandler = getByIdHandler;
-        _getListHandler = getListHandler;
+        _listHandler = listHandler;
+        _byIdHandler = byIdHandler;
         _updateHandler = updateHandler;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(CreateQuestionCategoryRequest request)
-    {
-        var result = await _createHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
-    {
-        var result = await _getByIdHandler.Handle(
-            new GetQuestionCategoryByIdRequest
-            {
-                Id = id
-            });
-
-        if (!result.Success)
-            return NotFound(result);
-
-        return Ok(result);
+        _deleteHandler = deleteHandler;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList(
-        [FromQuery] GetQuestionCategoryListRequest request)
+    public async Task<IActionResult> GetList()
     {
-        var result = await _getListHandler.Handle(request);
-
-        if (!result.Success)
-            return BadRequest(result);
-
-        return Ok(result);
+        return Ok(await _listHandler.Handle(
+            new GetQuestionCategoryListRequest()));
     }
 
-    [HttpPut]
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        return Ok(await _byIdHandler.Handle(
+            new GetQuestionCategoryByIdRequest
+            {
+                Id = id
+            }));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        CreateQuestionCategoryRequest request)
+    {
+        return Ok(await _createHandler.Handle(request));
+    }
+
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
+        Guid id,
         UpdateQuestionCategoryRequest request)
     {
-        var result = await _updateHandler.Handle(request);
+        request.Id = id;
 
-        if (!result.Success)
-            return BadRequest(result);
+        return Ok(await _updateHandler.Handle(request));
+    }
 
-        return Ok(result);
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        return Ok(await _deleteHandler.Handle(
+            new DeleteQuestionCategoryRequest
+            {
+                Id = id
+            }));
     }
 }

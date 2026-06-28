@@ -1,23 +1,31 @@
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
 public class AttendanceRepository : IAttendanceRepository
 {
-    private readonly AppDbContext _context;
+    private readonly IApplicationDbContext _context;
 
-    public AttendanceRepository(AppDbContext context)
+    public AttendanceRepository(IApplicationDbContext context)
     {
         _context = context;
     }
 
     public async Task AddAsync(Attendance attendance)
     {
-        await _context.Attendances.AddAsync(attendance);
+        _context.Attendances.Add(attendance);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Attendance>> GetListAsync()
+    {
+        return await _context.Attendances
+            .OrderBy(x => x.AttendanceSessionId)
+            .ThenBy(x => x.StudentId)
+            .ToListAsync();
     }
 
     public async Task<Attendance?> GetByIdAsync(Guid id)
@@ -32,12 +40,15 @@ public class AttendanceRepository : IAttendanceRepository
             .AnyAsync(x => x.Id == id);
     }
 
-    public async Task<bool> ExistsAsync(
-        Guid attendanceSessionId,
-        Guid studentId)
+    public async Task UpdateAsync(Attendance attendance)
     {
-        return await _context.Attendances.AnyAsync(x =>
-            x.AttendanceSessionId == attendanceSessionId &&
-            x.StudentId == studentId);
+        _context.Attendances.Update(attendance);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Attendance attendance)
+    {
+        _context.Attendances.Remove(attendance);
+        await _context.SaveChangesAsync();
     }
 }

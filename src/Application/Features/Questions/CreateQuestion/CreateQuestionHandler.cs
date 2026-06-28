@@ -1,3 +1,5 @@
+using Application.Common.Enums;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
 
@@ -7,95 +9,64 @@ public class CreateQuestionHandler
 {
     private readonly IQuestionRepository _repository;
     private readonly IQuestionCategoryRepository _categoryRepository;
-    private readonly ICatechismGradeRepository _gradeRepository;
+    private readonly ICodeGenerator _codeGenerator;
 
     public CreateQuestionHandler(
         IQuestionRepository repository,
         IQuestionCategoryRepository categoryRepository,
-        ICatechismGradeRepository gradeRepository)
+        ICodeGenerator codeGenerator)
     {
         _repository = repository;
         _categoryRepository = categoryRepository;
-        _gradeRepository = gradeRepository;
+        _codeGenerator = codeGenerator;
     }
 
     public async Task<CreateQuestionResult> Handle(
         CreateQuestionRequest request)
     {
-        var errors = CreateQuestionValidator.Validate(request);
+        var category = await _categoryRepository.GetByIdAsync(
+            request.QuestionCategoryId);
 
-        if (errors.Any())
+        if (category is null)
         {
             return new CreateQuestionResult
             {
                 Success = false,
-                Message = string.Join(Environment.NewLine, errors)
+                Message = "Không tìm thấy nhóm câu hỏi."
             };
         }
 
-        var category =
-            await _categoryRepository.GetByIdAsync(request.QuestionCategoryId);
+        var code = await _codeGenerator.GenerateAsync(
+            CodeType.Question,
+            request.ParishId);
 
-        if (category == null)
+        var question = new Question
         {
-            return new CreateQuestionResult
-            {
-                Success = false,
-                Message = "Question category not found."
-            };
-        }
+            Id = Guid.NewGuid(),
 
-        var grade =
-            await _gradeRepository.GetByIdAsync(request.CatechismGradeId);
-
-        if (grade == null)
-        {
-            return new CreateQuestionResult
-            {
-                Success = false,
-                Message = "Catechism grade not found."
-            };
-        }
-
-        var entity = new Question
-        {
             QuestionCategoryId = request.QuestionCategoryId,
-            CatechismGradeId = request.CatechismGradeId,
-            Code = request.Code.Trim(),
-            Content = request.Content.Trim(),
-            AnswerA = request.AnswerA.Trim(),
-            AnswerB = request.AnswerB.Trim(),
+            Code = code,
+            Content = request.Content,
+           AnswerA = request.AnswerA,
+            AnswerB = request.AnswerB,
             AnswerC = request.AnswerC,
             AnswerD = request.AnswerD,
-            CorrectAnswer = request.CorrectAnswer.Trim().ToUpper(),
+            CorrectAnswer = request.CorrectAnswer,
             DifficultyLevel = request.DifficultyLevel,
             IsActive = request.IsActive
         };
 
-        await _repository.AddAsync(entity);
+        await _repository.AddAsync(question);
 
         return new CreateQuestionResult
         {
             Success = true,
-            Message = "Question created successfully.",
+            Message = "Tạo câu hỏi thành công.",
             Data = new CreateQuestionResponse
             {
-                Id = entity.Id,
-                QuestionCategoryId = entity.QuestionCategoryId,
-                QuestionCategoryCode = category.Code,
-                QuestionCategoryName = category.Name,
-                CatechismGradeId = entity.CatechismGradeId,
-                CatechismGradeCode = grade.Code,
-                CatechismGradeName = grade.Name,
-                Code = entity.Code,
-                Content = entity.Content,
-                AnswerA = entity.AnswerA,
-                AnswerB = entity.AnswerB,
-                AnswerC = entity.AnswerC,
-                AnswerD = entity.AnswerD,
-                CorrectAnswer = entity.CorrectAnswer,
-                DifficultyLevel = entity.DifficultyLevel,
-                IsActive = entity.IsActive
+                Id = question.Id,
+                Code = question.Code,
+                Content = question.Content
             }
         };
     }

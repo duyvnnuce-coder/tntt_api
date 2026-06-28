@@ -2,20 +2,17 @@ namespace Application.Features.ExamScores.CreateExamScore;
 
 public static class CreateExamScoreValidator
 {
-    public static List<string> Validate(
-        CreateExamScoreRequest request)
+    public static string? Validate(CreateExamScoreRequest request)
     {
-        var errors = new List<string>();
-
         if (request.ExamId == Guid.Empty)
-            errors.Add("ExamId is required.");
+            return "Kỳ thi không hợp lệ.";
 
         if (request.StudentId == Guid.Empty)
-            errors.Add("StudentId is required.");
+            return "Học sinh không hợp lệ.";
 
         if (request.Score < 0)
-            errors.Add("Score must be greater than or equal to 0.");
+            return "Điểm không hợp lệ.";
 
-        return errors;
+        return null;
     }
 }
